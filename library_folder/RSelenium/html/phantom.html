@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Start a phantomjs binary in webdriver mode.</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for phantom {RSelenium}"><tr><td>phantom {RSelenium}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Start a phantomjs binary in webdriver mode.</h2>
+
+<h3>Description</h3>
+
+<p><code>phantom</code>
+A utility function to control a phantomjs binary in webdriver mode.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+phantom(pjs_cmd = "", port = 4444L, extras = "", ...)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>pjs_cmd</code></td>
+<td>
+<p>The name, full or partial path of a phantomjs 
+executable. This is optional only state if the executable is not in 
+your path.</p>
+</td></tr>
+<tr valign="top"><td><code>port</code></td>
+<td>
+<p>An integer giving the port on which phantomjs will listen. 
+Defaults to 4444. format [[&lt;IP&gt;:]&lt;PORT&gt;]</p>
+</td></tr>
+<tr valign="top"><td><code>extras</code></td>
+<td>
+<p>An optional character vector: see 'Details'.</p>
+</td></tr>
+<tr valign="top"><td><code>...</code></td>
+<td>
+<p>Arguments to pass to <code><a href="../../base/html/system2.html">system2</a></code></p>
+</td></tr>
+</table>
+
+
+<h3>Detail</h3>
+
+<p>phantom() is used to start a phantomjs binary in 
+webdriver mode. This can be used to drive a phantomjs binary on a 
+machine without selenium server. Argument extras can be used to 
+specify optional extra command line arguments see 
+<a href="http://phantomjs.org/api/command-line.html">http://phantomjs.org/api/command-line.html</a>
+</p>
+
+
+<h3>Value</h3>
+
+<p>phantom() returns a list with two functions:
+</p>
+
+<dl>
+<dt>getPID</dt><dd><p>returns the process id of the phantomjs binary running in 
+webdriver mode.</p>
+</dd>
+<dt>stop</dt><dd><p>terminates the phantomjs binary running in webdriver mode 
+using <code><a href="../../tools/html/pskill.html">pskill</a></code></p>
+</dd>
+</dl>
+
+
+
+<h3>Examples</h3>
+
+<pre>
+## Not run: 
+pJS &lt;- phantom()
+# note we are running here without a selenium server phantomjs is 
+# listening on port 4444
+# in webdriver mode
+remDr &lt;- remoteDriver(browserName = "phantomjs")
+remDr$open()
+remDr$navigate("http://www.google.com/ncr")
+remDr$screenshot(display = TRUE)
+webElem &lt;- remDr$findElement("name", "q")
+webElem$sendKeysToElement(list("HELLO WORLD"))
+remDr$screenshot(display = TRUE)
+remDr$close()
+# note remDr$closeServer() is not called here. We stop the phantomjs 
+# binary using
+pJS$stop()
+
+## End(Not run)
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>RSelenium</em> version 1.7.3 <a href="00Index.html">Index</a>]</div>
+</body></html>

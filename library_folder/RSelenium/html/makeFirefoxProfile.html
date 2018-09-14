@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Make Firefox profile.</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for makeFirefoxProfile {RSelenium}"><tr><td>makeFirefoxProfile {RSelenium}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Make Firefox profile.</h2>
+
+<h3>Description</h3>
+
+<p><code>makeFirefoxProfile</code>
+A utility function to make a firefox profile.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+makeFirefoxProfile(opts)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>opts</code></td>
+<td>
+<p>option list of firefox</p>
+</td></tr>
+</table>
+
+
+<h3>Detail</h3>
+
+<p>A firefox profile directory is zipped and base64 
+encoded. It can then be passed
+to the selenium server as a required capability with key 
+firefox_profile
+</p>
+
+
+<h3>Note</h3>
+
+<p>Windows doesn't come with command-line zip capability. 
+Installing rtools
+<a href="https://CRAN.R-project.org/bin/windows/Rtools/index.html">https://CRAN.R-project.org/bin/windows/Rtools/index.html</a> is a 
+straightforward way to gain this capability.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+## Not run: 
+fprof &lt;- makeFirefoxProfile(list(browser.download.dir = "D:/temp"))
+remDr &lt;- remoteDriver(extraCapabilities = fprof)
+remDr$open()
+
+## End(Not run)
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>RSelenium</em> version 1.7.3 <a href="00Index.html">Index</a>]</div>
+</body></html>

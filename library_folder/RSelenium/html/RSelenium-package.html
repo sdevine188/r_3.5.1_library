@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: RSelnium: An R client for Selenium Remote Webdriver</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for RSelenium-package {RSelenium}"><tr><td>RSelenium-package {RSelenium}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>
+RSelnium: An R client for Selenium Remote Webdriver
+</h2>
+
+<h3>Description</h3>
+
+<p>These are R bindings for the WebDriver API in Selenium 2. They use
+the JsonWireProtocol defined at
+http://code.google.com/p/selenium/wiki/JsonWireProtocol to communicate with
+a Selenium RemoteWebDriver Server.
+</p>
+
+
+<h3>Details</h3>
+
+
+<table summary="Rd table">
+<tr>
+ <td style="text-align: left;">
+Package: </td><td style="text-align: left;"> RSelenium</td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+Type: </td><td style="text-align: left;"> Package</td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+Version: </td><td style="text-align: left;"> 1.0</td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+Date: </td><td style="text-align: left;"> 2012-09-20</td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+License: </td><td style="text-align: left;"> MIT</td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+Depends: </td><td style="text-align: left;"> R (&gt;= 2.15.0),methods,RCurl,rjson</td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+</td>
+</tr>
+
+</table>
+
+
+
+<h3>Author(s)</h3>
+
+<p>John Harrison &lt;johndharrion0@gmail.com
+</p>
+
+
+<h3>References</h3>
+
+<p>http://seleniumhq.org/projects/webdriver/
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+## Not run: 
+# run checkForServer() if you need the stand-alone Java binary
+startServer()
+remDr &lt;- remoteDriver$new()
+remDr$open()
+remDr$navigate("http://www.google.com")
+remDr$navigate("http://www.bbc.co.uk")
+remDr$goBack()
+remDr$goForward()
+remDr$quit()
+
+## End(Not run)
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>RSelenium</em> version 1.7.3 <a href="00Index.html">Index</a>]</div>
+</body></html>

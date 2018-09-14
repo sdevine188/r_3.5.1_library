@@ -1,0 +1,129 @@
+as.feature              Coerce character strings or JSON to GeoJSON
+                        Feature
+as_feature              Convert a FeatureCollection to a Feature
+data-types              Description of GeoJSON data types
+georandom               Return a FeatureCollection with N number of
+                        features with random coordinates
+lawn-defunct            Defunct functions in 'lawn'
+lawn-package            R client for turf.js for geospatial analysis
+lawn_along              Get a point at a distance along a line
+lawn_area               Calculate the area of a polygon or group of
+                        polygons
+lawn_average            Average of a field among points within polygons
+lawn_bbox               Make a bounding box from a polygon
+lawn_bbox_polygon       Make a polygon from a bounding box
+lawn_bearing            Get geographic bearing between two points
+lawn_bezier             Curve a linestring
+lawn_boolean_clockwise
+                        Boolean clockwise
+lawn_boolean_contains   Boolean contains
+lawn_boolean_crosses    Boolean crosses
+lawn_boolean_disjoint   Boolean crosses
+lawn_boolean_overlap    Boolean overlap
+lawn_boolean_pointonline
+                        Boolean overlap
+lawn_boolean_within     Boolean within
+lawn_buffer             Buffer a feature
+lawn_center             Get center point
+lawn_center_of_mass     Center of mass
+lawn_centroid           Centroid
+lawn_circle             circle
+lawn_collect            Collect method
+lawn_collectionof       Enforce expectations about types of
+                        FeatureCollection inputs
+lawn_combine            Combine singular features into plural versions
+lawn_concave            Concave hull polygon
+lawn_convex             Convex hull polygon
+lawn_coordall           Get all coordinates from any GeoJSON object,
+                        returning an array of coordinate arrays.
+lawn_coordeach          Iterate over property objects in any GeoJSON
+                        object
+lawn_count              Count number of points within polygons
+lawn_data               Data for use in examples
+lawn_destination        Calculate destination point
+lawn_deviation          Standard deviation of a field among points
+                        within polygons
+lawn_difference         Difference
+lawn_dissolve           Dissolves a FeatureCollection of polygons based
+                        on a property. Note that multipart features
+                        within the collection are not supported
+lawn_distance           Distance between two points
+lawn_envelope           Calculate envelope around features
+lawn_explode            Explode vertices to points
+lawn_extent             Get a bounding box
+lawn_feature            Create a Feature
+lawn_featurecollection
+                        Create a FeatureCollection
+lawn_featureeach        Iterate over features in any GeoJSON object
+lawn_featureof          Enforce expectations about types of Feature
+                        inputs
+lawn_filter             Filter a FeatureCollection by a given property
+                        and value
+lawn_flatten            Flatten
+lawn_flip               Flip x,y to y,x, and vice versa
+lawn_geometrycollection
+                        Create a geometrycollection
+lawn_geosjontype        Enforce expectations about types of GeoJSON
+                        objects.
+lawn_getcoord           Unwrap a coordinate from a Feature with a Point
+                        geometry, or a single coordinate.
+lawn_hex_grid           Create a HexGrid
+lawn_idw                IDW
+lawn_inside             Does a point reside inside a polygon
+lawn_intersect          Intersection
+lawn_isolines           Generate Isolines
+lawn_kinks              Get points at all self-intersections of a
+                        polygon
+lawn_line_distance      Measure a linestring
+lawn_line_offset        Offset a linestring
+lawn_line_slice         Slice a line given two points
+lawn_line_slice_along   Slice a line given two points
+lawn_linestring         Create a linestring
+lawn_max                Maximum value of a field among points within
+                        polygons
+lawn_median             Median value of a field among points within
+                        polygons
+lawn_merge              Merge polygons
+lawn_midpoint           Get a point midway between two points
+lawn_min                Minimum value of a field among points within
+                        polygons
+lawn_multilinestring    Create a multilinestring
+lawn_multipoint         MultiPoint
+lawn_multipolygon       Create a multipolygon
+lawn_nearest            Get nearest point
+lawn_planepoint         Calculate a Planepoint
+lawn_point              Create a point
+lawn_point_grid         Create a PointGrid
+lawn_point_on_line      Get closest point on linestring to reference
+                        point
+lawn_point_on_surface   Get a point on the surface of a feature
+lawn_polygon            Create a polygon
+lawn_propeach           Iterate over property objects in any GeoJSON
+                        object
+lawn_pt2line_distance   Minimum distance between a point and a
+                        lineString
+lawn_random             Generate random data
+lawn_remove             Remove things from a FeatureCollection
+lawn_rewind             Rewind
+lawn_sample             Return features from FeatureCollection at
+                        random
+lawn_simplify           Simplify GeoJSON data
+lawn_square             Calculate a square bounding box
+lawn_square_grid        Create a SquareGrid
+lawn_sum                Sum of a field among points within polygons
+lawn_tag                Spatial join of points and polygons
+lawn_tesselate          Tesselate
+lawn_tin                Create a Triangulated Irregular Network
+lawn_transform_rotate   Rotate a GeoJSON feature
+lawn_transform_scale    Scale a GeoJSON feature
+lawn_transform_translate
+                        Translate a GeoJSON feature
+lawn_triangle_grid      Create a TriangleGrid
+lawn_truncate           Truncate
+lawn_union              Merge polygons
+lawn_unkinkpolygon      Unkink polygon
+lawn_variance           Variance of a field among points within
+                        polygons
+lawn_within             Return points that fall within polygons
+print-methods           Lawn print methods to provide summary view
+view                    Visualize geojson

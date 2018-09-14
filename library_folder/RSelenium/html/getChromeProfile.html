@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Get Chrome profile.</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for getChromeProfile {RSelenium}"><tr><td>getChromeProfile {RSelenium}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Get Chrome profile.</h2>
+
+<h3>Description</h3>
+
+<p><code>getChromeProfile</code>
+A utility function to get a Chrome profile.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+getChromeProfile(dataDir, profileDir)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>dataDir</code></td>
+<td>
+<p>Specifies the user data directory, which is where the 
+browser will look for all of its state.</p>
+</td></tr>
+<tr valign="top"><td><code>profileDir</code></td>
+<td>
+<p>Selects directory of profile to associate with the 
+first browser launched.</p>
+</td></tr>
+</table>
+
+
+<h3>Detail</h3>
+
+<p>A chrome profile directory is passed as an extraCapability.
+The data dir has a number of default locations
+</p>
+
+<dl>
+<dt>Windows XP</dt><dd>
+<p>Google Chrome: C:/Documents and Settings/%USERNAME%/Local Settings/Application Data/Google/Chrome/User Data
+</p>
+</dd>
+<dt>Windows 8 or 7 or Vista</dt><dd>
+<p>Google Chrome: C:/Users/%USERNAME%/AppData/Local/Google/Chrome/User Data
+</p>
+</dd>
+<dt>Mac OS X</dt><dd>
+<p>Google Chrome: ~/Library/Application Support/Google/Chrome
+</p>
+</dd>
+<dt>Linux</dt><dd>
+<p>Google Chrome: ~/.config/google-chrome
+</p>
+</dd>
+</dl>
+
+<p>The profile directory is contained in the user directory and by default 
+is named &quot;Default&quot;
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+## Not run: 
+# example from windows using a profile directory "Profile 1"
+cprof &lt;- getChromeProfile("C:\\Users\\john\\AppData\\Local\\Google\\Chrome\\User Data", "Profile 1")
+remDr &lt;- remoteDriver(browserName = "chrome", extraCapabilities = cprof)
+
+## End(Not run)
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>RSelenium</em> version 1.7.3 <a href="00Index.html">Index</a>]</div>
+</body></html>
