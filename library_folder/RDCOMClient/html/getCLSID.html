@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Get the UUID/GUID from the human-readable name of an...</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for getCLSID {RDCOMClient}"><tr><td>getCLSID {RDCOMClient}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Get the UUID/GUID from the human-readable name of an application.</h2>
+
+<h3>Description</h3>
+
+<p>This function provides a way to find the 
+unique identifier for an application or interface
+given its human-readable form, e.g. &quot;Excel.Application&quot;.
+This is convenient if you want to attempt to load the
+type library without having an instance of the application
+or if you want to use this information for looking
+in the Windows registry ( - see the <code>SWinRegistry</code> package).
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+getCLSID(appName)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>appName</code></td>
+<td>
+<p>the human-readable string (i.e. character vector of length 1)
+whose UUID we want to find.</p>
+</td></tr>
+</table>
+
+
+<h3>Details</h3>
+
+<p>This is a interface to the C routines
+<code>CLSIDFromString</code> and <code>CLSIDFromProgID</code>
+</p>
+
+
+<h3>Value</h3>
+
+<p>A string which gives the UUID.
+If the UUID could not be found, 
+this (currently) returns the UUID of all zeros:
+<code>"{00000000-0000-0000-0000-000000000000}"</code>
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Duncan Temple Lang (duncan@r-project.org)</p>
+
+
+<h3>References</h3>
+
+<p><a href="http://www.omegahat.net/RDCOMClient">http://www.omegahat.net/RDCOMClient</a>
+<a href="http://www.omegahat.net/RDCOMServer">http://www.omegahat.net/RDCOMServer</a>
+<a href="http://www.omegahat.net/SWinTypeLibs">http://www.omegahat.net/SWinTypeLibs</a>
+<a href="http://www.omegahat.net/SWinRegistry">http://www.omegahat.net/SWinRegistry</a>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+  getCLSID("Excel.Application")
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>RDCOMClient</em> version 0.93-0 <a href="00Index.html">Index</a>]</div>
+</body></html>

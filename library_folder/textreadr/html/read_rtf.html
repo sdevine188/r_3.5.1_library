@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Read a Rich Text Format into R</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for read_rtf {textreadr}"><tr><td>read_rtf {textreadr}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Read a Rich Text Format into R</h2>
+
+<h3>Description</h3>
+
+<p>A wrapper for <code><a href="../../striprtf/html/read_rtf.html">read_rtf</a></code> to read RTFs into <span class="pkg">R</span>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+read_rtf(file, skip = 0, remove.empty = TRUE, trim = TRUE, ...)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>file</code></td>
+<td>
+<p>A path to a RTF file.</p>
+</td></tr>
+<tr valign="top"><td><code>skip</code></td>
+<td>
+<p>The number of lines to skip.</p>
+</td></tr>
+<tr valign="top"><td><code>remove.empty</code></td>
+<td>
+<p>logical.  If <code>TRUE</code> empty elements in the vector are
+removed.</p>
+</td></tr>
+<tr valign="top"><td><code>trim</code></td>
+<td>
+<p>logical.  If <code>TRUE</code> the leading/training white space is
+removed.</p>
+</td></tr>
+<tr valign="top"><td><code>...</code></td>
+<td>
+<p>Other arguments passed to <code><a href="../../striprtf/html/read_rtf.html">read_rtf</a></code>.</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>Returns a character vector.
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code><a href="../../striprtf/html/read_rtf.html">read_rtf</a></code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+## Not run: 
+rtf_dat &lt;- read_rtf(
+    'https://raw.githubusercontent.com/trinker/textreadr/master/inst/docs/trans7.rtf'
+)
+
+## End(Not run)
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>textreadr</em> version 0.8.0 <a href="00Index.html">Index</a>]</div>
+</body></html>

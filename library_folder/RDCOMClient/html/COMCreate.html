@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Create a COM object</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for COMCreate {RDCOMClient}"><tr><td>COMCreate {RDCOMClient}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Create a COM object</h2>
+
+<h3>Description</h3>
+
+<p>These functions are used from R to either create a COM object of a specific type
+or to obtain a reference to an existing COM application/object.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+COMCreate(name, ..., existing = TRUE)
+getCOMInstance(guid, force = TRUE, silent = FALSE)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>name</code></td>
+<td>
+<p>the name identifying the type of COM object.
+This is usually the name of the class, such as
+Excel.Application. 
+In the future, this may support finding class IDs
+separately and passing them as this argument</p>
+</td></tr>
+<tr valign="top"><td><code>...</code></td>
+<td>
+<p>currently ignored. In the future, 
+we will have arguments controlling how
+the server is created, e.g. the location of the machine, etc.</p>
+</td></tr>
+<tr valign="top"><td><code>guid</code></td>
+<td>
+<p>a string (character vector of length 1) that identifies the 
+GUID - Global Unique Identifier - for the COM interface of interest.
+This should have the curly braces ('...').</p>
+</td></tr>
+<tr valign="top"><td><code>existing</code></td>
+<td>
+<p>a logical value. If this is <code>TRUE</code>, then first we try to 
+connect to an existing instance of the specified DCOM server,
+If no such instance exists, then we create a new one.
+If this is <code>FALSE</code>, then we just create a new instance and don't check whether
+there is one already running. This guarantees that we get </p>
+</td></tr>
+<tr valign="top"><td><code>force</code></td>
+<td>
+<p>a logical value. If this is <code>TRUE</code>, this will (attempt to) create a new instance
+of the specified DCOM application if there is no instance already in existence.
+In other words, <code>getCOMInstance</code> will look for an existing instance and if that fails,
+it will create a new one. If this is <code>FALSE</code>, <code>getCOMInstance</code> will return
+after attempting to find an existing instance. As a result, the
+return value might be <code>NULL</code>.</p>
+</td></tr>
+<tr valign="top"><td><code>silent</code></td>
+<td>
+<p>a logical value that is used when <code>force</code> is
+<code>TRUE</code> and a new object needs to be created. If this is <code>TRUE</code>, the warning
+message about creating the new instance is supressed. Otherwise, the
+warning is issued.</p>
+</td></tr>
+</table>
+
+
+<h3>Details</h3>
+
+<p>This resolves the class ID given the name and
+then creates the instance using <code>CoCreateInstance</code>.
+The class ID is found using <code>CLSIDFromString</code>
+and if that fails using <code>CLSIDFromProgID</code>.
+</p>
+
+
+<h3>Value</h3>
+
+<p>An object of class <code>COMIDispatch</code>.
+</p>
+
+
+<h3>Note</h3>
+
+<p><code>getCOMInstance</code> works with Word and Excel
+but for some reason on at least some machines fails
+to find an existing Internet Explorer application.
+As a result, it will create a new instance of the application.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Duncan Temple Lang (duncan@r-project.org)</p>
+
+
+<h3>References</h3>
+
+<p><a href="http://www.omegahat.net/RDCOMClient">http://www.omegahat.net/RDCOMClient</a>
+<a href="http://www.omegahat.net/RDCOMServer">http://www.omegahat.net/RDCOMServer</a>
+<a href="http://www.omegahat.net/SWinTypeLibs">http://www.omegahat.net/SWinTypeLibs</a>
+<a href="http://www.omegahat.net/SWinRegistry">http://www.omegahat.net/SWinRegistry</a>
+</p>
+
+
+<h3>See Also</h3>
+
+<p>The <code>$</code> and <code>[[</code> operators
+for the <code>COMIDispatch</code> class - <code><a href="COMAccessors.html">COMAccessors</a></code>.
+</p>
+<p>Also, see how one can generate &quot;compiled&quot; or processed interfaces
+to any or all of the types in an application using the
+<code>SWinTypeLibs</code>.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+
+## Not run: 
+ COMCreate("Excel.Application")
+ getCOMInstance("{000208D5-0000-0000-C000-000000000046}")
+
+## End(Not run)
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>RDCOMClient</em> version 0.93-0 <a href="00Index.html">Index</a>]</div>
+</body></html>

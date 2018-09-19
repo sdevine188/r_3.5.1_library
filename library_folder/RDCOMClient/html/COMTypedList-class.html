@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Classes for representing DCOM objects that have list-like...</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for COMTypedList-class {RDCOMClient}"><tr><td>COMTypedList-class {RDCOMClient}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Classes for representing DCOM objects that have list-like facilities</h2>
+
+<h3>Description</h3>
+
+<p>These classes extend the basic <code><a href="COMList.html">COMList</a></code>.
+They are used to represent DCOM types that have methods
+that support a list-like interface. 
+In Office applications, this means that they have methods 
+named <code>Item</code> and <code>Count</code>
+which correspond to index accessors (<code>[[</code>)
+and <code>length</code> in R.
+We can therefore make these objects feel more 
+like R lists using methods defined for these classes.
+</p>
+<p>Like <code><a href="COMList-class.html">COMList-class</a></code>, these
+classes are not intended to be used directly, but 
+are to be used in creating derived or sub-classes.
+</p>
+<p>These particular classes provide additional functionality for the
+<code><a href="COMList-class.html">COMList-class</a></code> by specifying the type of the elements.
+<code>COMTypedList</code> knows that its elements have a type/class name
+given by the singular of its own class.  For example, if we had a
+class named <code>Workbooks</code> that extended <code>COMTypedList</code>, then
+elements returned via its <code>Item</code> method would be coerced to class
+<code>Workbook</code> the singular of <code>Workbooks</code>.
+</p>
+<p>The class <code>COMTypedNamedList</code> does essentially
+the same thing, but does not rely on the
+class name of its elements being the singular form of
+its own class name. Instead, the class name is stored
+with the <code>COMTypedNamedList</code> object
+and is used to coerce an element returned from
+the <code>Item</code> method to the appropriate R class.
+(If we had class slots in the S4 system, we would 
+use that rather than putting the name into each instance
+of a class. However, the overhead is small.)
+This is used, for example, in the case of
+our <code>Workbooks</code> illustration above. In Excel,
+the <code>Workbooks</code> type behaves like a list
+but returns elements which are of class <code>_Workbook</code>.
+In this case, the <code>name</code> field in the
+derived class <code>Workbooks</code> would be 
+<code>_Workbook</code> and elements would be coerced
+to that R type.
+</p>
+<p>These classes form part of the run-time infrastructure
+for &quot;compiled&quot; or pre-processed classes to DCOM interfaces
+that  are generated from the type library describing a collection
+of COM interfaces. See the <code>SWinTypeLibs</code> package
+and the <code><a href="../../SWinTypeLibs/html/generateInterface.html">generateInterface</a></code> function.
+</p>
+
+
+<h3>Objects from the Class</h3>
+
+<p>Objects can be created from these classes manually using
+the familiar <code>new</code> function. However, when
+used in the &quot;compiled&quot; DCOM interfaces, they
+are automatically created as return values or
+arguments in methods where appropriate.
+</p>
+
+
+<h3>Slots</h3>
+
+
+<dl>
+<dt><code>ref</code>:</dt><dd><p>Object of class <code>"externalptr"</code>, inherited</p>
+</dd>
+<dt><code>name</code>:</dt><dd><p>character string (i.e. vector of length 1).
+This is the field in the <code>COMTypedNamedList</code>
+that specifies the name of the class for an element
+of the list.</p>
+</dd>
+</dl>
+
+
+
+<h3>Extends</h3>
+
+<p>Class <code>"COMList"</code>, directly.
+Class <code>"COMIDispatch"</code>, by class <code>"COMList"</code>.
+Class <code>"IUnknown"</code>, by class <code>"COMList"</code>.
+</p>
+
+
+<h3>Methods</h3>
+
+
+<dl>
+<dt>[[</dt><dd><p><code>signature(x = "COMTypedList", i = "ANY")</code>:
+get the i-th element of the DCOM list
+and coerce the result to the appropriate type specified by the
+type of elements associated with the class.</p>
+</dd>
+</dl>
+
+
+
+<h3>Author(s)</h3>
+
+<p>Duncan Temple Lang (duncan@r-project.org)</p>
+
+
+<h3>References</h3>
+
+<p><a href="http://www.omegahat.net/RDCOMClient">http://www.omegahat.net/RDCOMClient</a>
+<a href="http://www.omegahat.net/RDCOMServer">http://www.omegahat.net/RDCOMServer</a>
+<a href="http://www.omegahat.net/SWinTypeLibs">http://www.omegahat.net/SWinTypeLibs</a>
+<a href="http://www.omegahat.net/SWinRegistry">http://www.omegahat.net/SWinRegistry</a>
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code><a href="COMList-class.html">COMList-class</a></code>
+<code><a href="COM.html">.COM</a></code>
+</p>
+
+<hr /><div style="text-align: center;">[Package <em>RDCOMClient</em> version 0.93-0 <a href="00Index.html">Index</a>]</div>
+</body></html>

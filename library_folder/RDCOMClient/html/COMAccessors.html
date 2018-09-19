@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: COM Object Accesors</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for COMAccessors {RDCOMClient}"><tr><td>COMAccessors {RDCOMClient}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>COM Object Accesors</h2>
+
+<h3>Description</h3>
+
+<p>These operators provide a more S-like
+syntax for accessing methods and properties
+in a dynamic COM object.
+One calls a COM object method using the <code>$</code>
+operator.
+The values of COM object properties are retrieved and set
+using <code>[[</code> and <code>[[&lt;-</code>, respectively.
+</p>
+
+
+<h3>Value</h3>
+
+<p>Setting a property returns <code>NULL</code>.
+</p>
+<p>Invoking a method and getting a property value
+returns an S object representing the COM value.
+Primitive COM values are converted to the corresponding
+S objects.
+COM objects are returned as COMIDispatch objects.
+</p>
+
+
+<h3>Methods</h3>
+
+
+<dl>
+<dt>x = &quot;COMIDispatch&quot;</dt><dd><p>the COMIDispatch object
+whose method or property is to be invoked.</p>
+</dd>
+</dl>
+
+
+<h3>Author(s)</h3>
+
+<p>Duncan Temple Lang (duncan@r-project.org)</p>
+
+
+<h3>References</h3>
+
+<p><a href="http://www.omegahat.net/RDCOMClient">http://www.omegahat.net/RDCOMClient</a>
+<a href="http://www.omegahat.net/RDCOMServer">http://www.omegahat.net/RDCOMServer</a>
+<a href="http://www.omegahat.net/SWinTypeLibs">http://www.omegahat.net/SWinTypeLibs</a>
+<a href="http://www.omegahat.net/SWinRegistry">http://www.omegahat.net/SWinRegistry</a>
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code><a href="COM.html">.COM</a></code>
+<code><a href="COMCreate.html">COMCreate</a></code>
+</p>
+<p><code><a href="COMList-class.html">COMList-class</a></code>
+<code><a href="COMTypedList-class.html">COMTypedList-class</a></code>
+<code><a href="COMTypedList-class.html">COMTypedNamedList-class</a></code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+ e &lt;- COMCreate("Excel.Application")
+
+  # Boolean/Logical
+ e[["Visible"]]
+  # Setting a value.
+ e[["Visible"]] &lt;- TRUE
+
+  # String
+ e[["Path"]]
+ e[["Version"]]
+
+  # Double
+ e[["Width"]]
+
+  # Long
+ e[["SheetsInNewWorkbook"]]
+ 
+  # Object
+ books &lt;- e[["Workbooks"]]
+
+ books$Add()
+
+  # Use this as a container, so can have integer indices, 1-based.
+ books[[1]]
+ e[["Workbooks"]][[1]]
+
+## Not run: 
+ books$Open("C:\mySheet.xls")
+
+## End(Not run)
+
+ e$CheckSpelling("This is a spell check") # okay
+ e$CheckSpelling("This is a spell chck") # error
+
+## Not run:  
+ e$SaveWorkspace()
+
+## End(Not run)
+ e$Quit()
+
+ rm(list= c("e", "books"))
+ gc()
+
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>RDCOMClient</em> version 0.93-0 <a href="00Index.html">Index</a>]</div>
+</body></html>

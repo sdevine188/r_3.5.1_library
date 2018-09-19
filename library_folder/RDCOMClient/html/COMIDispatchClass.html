@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Representation of generic COM object in R</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for COMIDispatch-class {RDCOMClient}"><tr><td>COMIDispatch-class {RDCOMClient}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Representation of generic COM object in R</h2>
+
+<h3>Description</h3>
+
+ 
+<p>These classes are used to represent in S an arbitrary
+COM object.
+<code>IUnknown</code> is the most basic and provides us with
+very little information about the underlying COM object.
+<code>COMIDispatch</code> is the work-horse for this package
+and provides a mechanism by which one
+can access the methods and properties of the COM object using the IDispatch
+interface, i.e. dynamic bindings rather than compiled ones.
+</p>
+<p><code>COMIDispatch</code> is a trivial extension of <code>IUnknown</code> 
+that provides type information which we use to dispatch methods.
+The <code>IUnknown</code> class is merely a reference to the C/C++-level
+COM object.
+</p>
+<p>Reference counting is done automatically in the C code so that
+the COM object should persist as long as there is an S object
+that refers to it and will be released when no S value refers to it.
+Of course, other clients can clobber the COM object and the S references
+will be meaningless.
+</p>
+
+
+<h3>Objects from the Class</h3>
+
+<p>Objects can be created by calls of the form <code><a href="COMCreate.html">COMCreate</a></code>
+or implicitly when a COM object is returned from a 
+COM method  call.
+</p>
+
+
+<h3>Slots</h3>
+
+
+<dl>
+<dt><code>ref</code>:</dt><dd><p>Object of class <code>"externalptr"</code> 
+this is the C++ value identifying the COM object.</p>
+</dd>
+</dl>
+
+
+
+<h3>Methods</h3>
+
+
+<dl>
+<dt>\$</dt><dd><p><code>signature(x = "COMIDispatch")</code>: 
+accessor for a method in the COM object. This returns
+a function that can be used to invoke the named method
+See <code>$</code> in <code><a href="COMAccessors.html">COMAccessors</a></code> </p>
+</dd>
+<dt>\$&lt;-</dt><dd><p><code>signature(x = "COMIDispatch", "ANY")</code>: 
+generates an error as one cannot assign to a function/method.
+This is implemeted this way for symmetry so that 
+assigning to a property (<code>x[["foo"]] &lt;- 1</code>)
+has the same basic syntax as accessing  it
+<code>x[["foo"]]</code></p>
+</dd></dl>
+<p>.
+If we made this operator a property assignment, 
+we would have <code>x$foo &lt;- 1</code> work but <code>x$foo</code> 
+failing.
+See <code><a href="COMAccessors.html">COMAccessors</a></code> 
+</p>
+<dl>
+<dt>[[</dt><dd><p><code>signature(x = "COMIDispatch", "numeric")</code>: 
+access an element of a list via the DCOM object's <code>Item</code> method,
+assuming we it has one.
+See <code><a href="COMAccessors.html">COMAccessors</a></code> </p>
+</dd>
+<dt>[[&lt;-</dt><dd><p><code>signature(x = "COMIDispatch", "character")</code>: 
+set a property value using the specified name.
+See <code><a href="COMAccessors.html">COMAccessors</a></code> </p>
+</dd>
+</dl>
+
+
+
+<h3>Author(s)</h3>
+
+<p>Duncan Temple Lang (duncan@r-project.org)</p>
+
+
+<h3>References</h3>
+
+<p><a href="http://www.omegahat.net/RDCOMClient">http://www.omegahat.net/RDCOMClient</a>
+<a href="http://www.omegahat.net/RDCOMServer">http://www.omegahat.net/RDCOMServer</a>
+<a href="http://www.omegahat.net/SWinTypeLibs">http://www.omegahat.net/SWinTypeLibs</a>
+<a href="http://www.omegahat.net/SWinRegistry">http://www.omegahat.net/SWinRegistry</a>
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code><a href="COMCreate.html">COMCreate</a></code>
+</p>
+
+<hr /><div style="text-align: center;">[Package <em>RDCOMClient</em> version 0.93-0 <a href="00Index.html">Index</a>]</div>
+</body></html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Read In Multiple Transcript Files From a Directory</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for read_dir_transcript {textreadr}"><tr><td>read_dir_transcript {textreadr}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Read In Multiple Transcript Files From a Directory</h2>
+
+<h3>Description</h3>
+
+<p>Read in multiple transcript files from a directory and create a
+<code><a href="../../base/html/data.frame.html">data.frame</a></code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+read_dir_transcript(path, col.names = c("Document", "Person", "Dialogue"),
+  pattern = NULL, all.files = FALSE, recursive = FALSE, skip = 0,
+  merge.broke.tot = TRUE, header = FALSE, dash = "", ellipsis = "...",
+  quote2bracket = FALSE, rm.empty.rows = TRUE, na = "", sep = NULL,
+  comment.char = "", max.person.nchar = 20, ignore.case = FALSE, ...)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>path</code></td>
+<td>
+<p>Path to the directory.</p>
+</td></tr>
+<tr valign="top"><td><code>col.names</code></td>
+<td>
+<p>A character vector specifying the column names of the
+transcript columns (document, person, dialogue).</p>
+</td></tr>
+<tr valign="top"><td><code>pattern</code></td>
+<td>
+<p>An optional regular expression. Only file names which match
+the regular expression will be returned.</p>
+</td></tr>
+<tr valign="top"><td><code>all.files</code></td>
+<td>
+<p>Logical.   If <code>FALSE</code>, only the names of visible files
+are returned. If <code>TRUE</code>, all file names will be returned.</p>
+</td></tr>
+<tr valign="top"><td><code>recursive</code></td>
+<td>
+<p>Logical. Should the listing recurse into directories?</p>
+</td></tr>
+<tr valign="top"><td><code>skip</code></td>
+<td>
+<p>Integer; the number of lines of the data file to skip before
+beginning to read data.</p>
+</td></tr>
+<tr valign="top"><td><code>merge.broke.tot</code></td>
+<td>
+<p>logical.  If <code>TRUE</code> and if the file being read in
+is .docx with broken space between a single turn of talk read_transcript
+will attempt to merge these into a single turn of talk.</p>
+</td></tr>
+<tr valign="top"><td><code>header</code></td>
+<td>
+<p>logical.  If <code>TRUE</code> the file contains the names of the
+variables as its first line.</p>
+</td></tr>
+<tr valign="top"><td><code>dash</code></td>
+<td>
+<p>A character string to replace the en and em dashes special
+characters (default is to remove).</p>
+</td></tr>
+<tr valign="top"><td><code>ellipsis</code></td>
+<td>
+<p>A character string to replace the ellipsis special characters.</p>
+</td></tr>
+<tr valign="top"><td><code>quote2bracket</code></td>
+<td>
+<p>logical. If <code>TRUE</code> replaces curly quotes with curly
+braces (default is <code>FALSE</code>).  If <code>FALSE</code> curly quotes are removed.</p>
+</td></tr>
+<tr valign="top"><td><code>rm.empty.rows</code></td>
+<td>
+<p>logical.  If <code>TRUE</code>
+<code><a href="read_transcript.html">read_transcript</a></code>  attempts to remove empty rows.</p>
+</td></tr>
+<tr valign="top"><td><code>na</code></td>
+<td>
+<p>A character string to be interpreted as an <code>NA</code> value.</p>
+</td></tr>
+<tr valign="top"><td><code>sep</code></td>
+<td>
+<p>The field separator character. Values on each line of the file are
+separated by this character.  The default of <code>NULL</code> instructs
+<code><a href="read_transcript.html">read_transcript</a></code> to use a separator suitable for the file
+type being read in.</p>
+</td></tr>
+<tr valign="top"><td><code>comment.char</code></td>
+<td>
+<p>A character vector of length one containing a single
+character or an empty string. Use <code>""</code> to turn off the interpretation of
+comments altogether.</p>
+</td></tr>
+<tr valign="top"><td><code>max.person.nchar</code></td>
+<td>
+<p>The max number of characters long names are expected
+to be.  This information is used to warn the user if a separator appears beyond
+this length in the text.</p>
+</td></tr>
+<tr valign="top"><td><code>ignore.case</code></td>
+<td>
+<p>logical.  If <code>TRUE</code> case in the <code>pattern</code> argument
+will be ignored.</p>
+</td></tr>
+<tr valign="top"><td><code>...</code></td>
+<td>
+<p>ignored.</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>Returns a dataframe of documents, dialogue, and people.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>read_transcript
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+skips &lt;- c(0, 1, 1, 0, 0, 1)
+path &lt;- system.file("docs/transcripts", package = 'textreadr')
+textreadr::peek(read_dir_transcript(path, skip = skips), Inf)
+
+## Not run: 
+## with additional  cleaning
+library(tidyverse, textshape, textclean)
+
+path %&gt;%
+    read_dir_transcript(skip = skips) %&gt;%
+    textclean::filter_row("Person", "^\\[") %&gt;%
+    mutate(
+        Person = stringi::stri_replace_all_regex(Person, "(^/\\s*)|(:\\s*$)", "") %&gt;%
+            trimws(),
+        Dialogue = stringi::stri_replace_all_regex(Dialogue, "(^/\\s*)", "")
+    ) %&gt;%
+    peek(Inf)
+
+## End(Not run)
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>textreadr</em> version 0.8.0 <a href="00Index.html">Index</a>]</div>
+</body></html>

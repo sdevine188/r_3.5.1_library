@@ -1,0 +1,239 @@
+---
+title: "Table layout"
+output: 
+  rmarkdown::html_vignette:
+    toc: true 
+    toc_depth: 3
+vignette: >
+  %\VignetteIndexEntry{Table layout}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+```{r echo = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  collapse = TRUE,
+  comment = "#>", 
+  eval = !is.null(knitr::opts_knit$get("rmarkdown.pandoc.to"))
+)
+```
+
+`flextable` layout can be managed with few functions. 
+
+```{r warning=FALSE, message=FALSE}
+library(flextable)
+library(officer)
+```
+
+
+## Cell merging 
+
+### vertical merging
+
+`merge_v()` will merge adjacent duplicated cells for each column of the selection.
+
+```{r warning=FALSE, message=FALSE}
+select_columns <- c("Species", "Petal.Length", "Petal.Width")
+myft <- regulartable(iris[46:55,], col_keys = select_columns)
+myft <- merge_v(myft, ~ Species + Petal.Width )
+myft
+```
+
+### horizontal merging
+
+`merge_h()` will merge adjacent duplicated cells for each row of the selection.
+
+```{r warning=FALSE, message=FALSE}
+select_columns <- c("Species", "Petal.Length", "Petal.Width")
+myft <- regulartable(head(mtcars, n = 10 ) )
+myft <- merge_h(myft)
+# and add borders
+myft <- border(myft, border = fp_border(), part = "all") 
+myft
+```
+
+### general merging function
+
+`merge_h()` will merge cells for a given continuous selection of rows and cells.
+
+```{r warning=FALSE, message=FALSE}
+select_columns <- c("Species", "Petal.Length", "Petal.Width")
+myft <- regulartable(head(mtcars, n = 6 ) )
+myft <- merge_at( myft, i = 1:3, j = 1:3)
+myft <- border(myft, border = fp_border(), part = "all")
+myft
+```
+
+
+### delete merging informations
+
+If you want to get rid of all merging (i.e. for development purposes), use `merge_none()`:
+
+```{r}
+merge_none(myft)
+```
+
+## Manage headers and footers
+
+For illustration, we will mainly work with headers but same can be apply 
+with footers (use functions `add_footer()` or `set_header_df()` instead).
+
+### col_keys
+
+Parameter `col_keys` define the variables to display and their order. 
+
+```{r}
+data <- iris[c(1:3, 51:53, 101:104),]
+
+myft <- regulartable(data, col_keys = c("Species", "Sepal.Length", "Petal.Length") )
+myft
+```
+
+If parameter `col_keys` has variables that are not existing in the dataset, they will be considered as blank columns and can be used as separators (in fact they can be use as you want, there is only no mapping of data associated).
+
+```{r}
+myft <- regulartable(
+  data = data, 
+  col_keys = c("Species", "col_1", "Sepal.Length", "Petal.Length") )
+myft <- theme_vanilla(myft)
+myft <- autofit(myft)
+myft <- empty_blanks(myft)
+myft
+```
+
+
+**`col_keys` default values are the names of the data.frame used to fill the flextable.**
+
+### Change labels
+
+Use `set_header_labels()` to replace labels of the bottom row of header. 
+
+```{r warning=FALSE, message=FALSE}
+ft <- regulartable( head( iris ) ) 
+ft <- set_header_labels(ft, Sepal.Length = "Sepal", 
+    Sepal.Width = "Sepal", Petal.Length = "Petal",
+    Petal.Width = "Petal", Species = "Species" )
+ft <- theme_vanilla(ft)
+ft <- autofit(ft)
+ft
+```
+
+### add a row of labels
+
+Use `add_header()` to add an header row. 
+
+```{r warning=FALSE, message=FALSE}
+ft <- add_header(ft, Sepal.Length = "length",
+    Sepal.Width = "width", Petal.Length = "length",
+    Petal.Width = "width", Species = "Species", top = FALSE ) 
+ft <- theme_vanilla(ft)
+ft <- autofit(ft)
+ft
+ft <- add_header(ft, Sepal.Length = "Inches",
+    Sepal.Width = "Inches", Petal.Length = "Inches",
+    Petal.Width = "Inches", Species = "Species", top = TRUE )
+
+ft <- add_footer(ft, Sepal.Length = "* This is a note" )
+ft <- color(ft, color = "orange", part = "footer" )
+
+# merge identical cells
+ft <- merge_h(ft, part = "header")
+ft <- merge_v(ft, part = "header")
+ft <- merge_at(ft, i = 1, j = 1:5, part = "footer")
+
+ft <- theme_booktabs(ft)
+ft
+```
+
+
+### Define headers with a reference table
+
+Use `set_header_df()` with a data.frame as parameter. Columns of the dataset will be transposed and joined using a key column. 
+
+#### Input dataset 
+
+Variable `col_keys` define key values to match with flextable column keys (defined by argument `col_keys` of `flextable()` function).
+
+This key column will not be displayed. Other variables will added as rows. Note that variables names are not displayed. 
+
+```{r warning=FALSE, message=FALSE}
+typology <- data.frame(
+  col_keys = c( "Sepal.Length", "Sepal.Width", "Petal.Length",
+                "Petal.Width", "Species" ),
+  type = c("double", "double", "double", "double", "factor"),
+  what = c("Sepal", "Sepal", "Petal", "Petal", "Species"),
+  measure = c("Length", "Width", "Length", "Width", "Species"),
+  stringsAsFactors = FALSE )
+autofit( theme_vanilla(flextable(typology)) )
+```
+
+#### Add the dataset as header rows
+
+Then use `set_header_df()` with parameter `key` that specifies name of the column used 
+to permform the join. Order of columns matters, first column will be first row, second one will be the second row, etc.
+
+```{r warning=FALSE, message=FALSE}
+ft <- regulartable( head( iris ) )
+ft <- set_header_df( ft, mapping = typology, key = "col_keys" )
+
+ft <- merge_h(ft, part = "header")
+ft <- merge_v(ft, part = "header")
+
+ft <- theme_vanilla(ft)
+ft <- autofit(ft)
+ft
+```
+
+
+
+## Cell widths and heights
+
+The default sizes of flextable columns and rows are set by default values. 
+This will drive to inadequate rows heights and columns widths in some cases. 
+You can use function `dim` to get flextable dimensions. 
+
+```{r}
+ft_base <- regulartable(head(iris))
+ft_base <- theme_tron_legacy(ft_base)
+ft_base
+dim(ft_base)
+```
+
+### Pretty dimensions
+
+Function `dim_pretty()` is computing optimized widths and heights. 
+
+```{r}
+dim_pretty(ft_base)
+```
+
+### Adjusts automatically cell widths and heights
+
+Function `autofit()` optimises widths and heights of the flextable. 
+This function is almost always to be called once when using 
+flextable objects, it makes compact tables.
+
+```{r}
+ft <- autofit(ft_base, add_w = 0, add_h = 0)
+
+dim(ft)
+ft
+```
+
+> Soft returns support : function `autofit` and `dim_pretty` do not
+support soft returns and may return wrong results (\n will be considered as "").
+  
+### Adjusts manually cell widths and heights
+
+Function `width()` and `height()` let you control dimensions of a flextable. `height_all()` is an helper function to set the same height to each part of the table.
+
+```{r}
+ft <- autofit(ft_base)
+ft <- width(ft, j = ~ Species, width = 2)
+ft <- height_all( ft, height = .4 )
+ft <- height( ft, i = 3, height = 1 )
+ft
+```
+

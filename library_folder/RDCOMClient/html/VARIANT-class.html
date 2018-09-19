@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Reference to a C-level VARIANT object</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for VARIANT-class {RDCOMClient}"><tr><td>VARIANT-class {RDCOMClient}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Reference to a C-level VARIANT object</h2>
+
+<h3>Description</h3>
+
+<p>The <code>VARIANT</code> class provides a way to 
+represent a C-level VARIANT object in S
+and assign it to S variable names.
+The other classes are trivial extensions that provide type information about a
+variant so that we can dispatch methods on such an object.
+</p>
+
+
+<h3>Objects from the Class</h3>
+
+<p>Currently created in C code when returning values from COM calls.
+In the future, one will be able to create variant objects directly
+from R and use them as arguments in <code><a href="COM.html">.COM</a></code> calls.
+Also we will provide methods for accessing the values of the variants,
+and converting them to different S values.
+</p>
+
+
+<h3>Slots</h3>
+
+
+<dl>
+<dt><code>ref</code>:</dt><dd><p>Object of class <code>"externalptr"</code> reference to the 
+C-level address of the variant data structure.</p>
+</dd>
+<dt><code>kind</code>:</dt><dd><p>Object of class <code>"integer"</code> the kind of the variant,
+e.g. I8, I4, R8, BSTR, DISPATCH, etc. represented as a named integer 
+which has the value from the C-level enumeration.</p>
+</dd>
+</dl>
+
+
+
+<h3>Methods</h3>
+
+<p>No methods defined with class &quot;VARIANT&quot; in the signature.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Duncan Temple Lang (duncan@r-project.org)</p>
+
+
+<h3>References</h3>
+
+<p><a href="http://www.omegahat.net/RDCOMClient">http://www.omegahat.net/RDCOMClient</a>
+<a href="http://www.omegahat.net/RDCOMServer">http://www.omegahat.net/RDCOMServer</a>
+<a href="http://www.omegahat.net/SWinTypeLibs">http://www.omegahat.net/SWinTypeLibs</a>
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code><a href="COM.html">.COM</a></code>
+</p>
+
+<hr /><div style="text-align: center;">[Package <em>RDCOMClient</em> version 0.93-0 <a href="00Index.html">Index</a>]</div>
+</body></html>

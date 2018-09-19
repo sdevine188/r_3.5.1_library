@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Create an instance of COMList class</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for COMList {RDCOMClient}"><tr><td>COMList {RDCOMClient}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Create an instance of COMList class</h2>
+
+<h3>Description</h3>
+
+<p>This is a function that creates an instance
+of a <code><a href="COMList-class.html">COMList-class</a></code> class
+or some derived class of this.
+The <code><a href="COMList-class.html">COMList-class</a></code> class allows
+certain types of COM objects to be treated as
+an ordered container with a length, much like
+the R list concept.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+COMList(obj, class = "COMList")
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>obj</code></td>
+<td>
+<p>the <code><a href="COMIDispatchClass.html">COMIDispatch-class</a></code> object which is to be treated as a class.</p>
+</td></tr>
+<tr valign="top"><td><code>class</code></td>
+<td>
+<p>the name of the class which is to be instantiated.
+This argument allows one to use the name of a derived class
+such as ExcelCOMList or COMTypedList.</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>An object of the specified class.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Duncan Temple Lang (duncan@r-project.org)</p>
+
+
+<h3>References</h3>
+
+<p><a href="http://www.omegahat.net/RDCOMClient">http://www.omegahat.net/RDCOMClient</a>
+<a href="http://www.omegahat.net/RDCOMServer">http://www.omegahat.net/RDCOMServer</a>
+<a href="http://www.omegahat.net/SWinTypeLibs">http://www.omegahat.net/SWinTypeLibs</a>
+<a href="http://www.omegahat.net/SWinRegistry">http://www.omegahat.net/SWinRegistry</a>
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code><a href="COM.html">.COM</a></code>
+</p>
+
+<hr /><div style="text-align: center;">[Package <em>RDCOMClient</em> version 0.93-0 <a href="00Index.html">Index</a>]</div>
+</body></html>

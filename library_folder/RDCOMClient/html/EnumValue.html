@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Create instance of enumeration value class in R</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for EnumValue {RDCOMClient}"><tr><td>EnumValue {RDCOMClient}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Create instance of enumeration value class in R</h2>
+
+<h3>Description</h3>
+
+<p>This generic function is used to create an instance of a
+value from an enumeration constant definition type.
+See <code><a href="EnumValue-class.html">EnumValue-class</a></code> for more information
+about these named symbolic constants.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+EnumValue(id, value, obj = new("EnumValue"))
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>id</code></td>
+<td>
+<p>a string giving the symbolic name of the value.</p>
+</td></tr>
+<tr valign="top"><td><code>value</code></td>
+<td>
+<p>the numeric value for this <code>EnumValue</code> instance.</p>
+</td></tr>
+<tr valign="top"><td><code>obj</code></td>
+<td>
+<p>an instance of the class to be created.
+This allows the caller to reuse this function with 
+for different derived classes of <code><a href="EnumValue-class.html">EnumValue-class</a></code>.
+One creates the new object via its default prototype and passes this to 
+<code>EnumValue</code>.
+</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>The value of the <code>obj</code> argument with is <code>.Data</code> slot
+filled in with a named integer vector of length 1.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Duncan Temple Lang (duncan@r-project.org)</p>
+
+
+<h3>See Also</h3>
+
+<p><code><a href="EnumValue-class.html">EnumValue-class</a></code>
+<code><a href="../../methods/html/setAs.html">setAs</a></code>
+</p>
+
+<hr /><div style="text-align: center;">[Package <em>RDCOMClient</em> version 0.93-0 <a href="00Index.html">Index</a>]</div>
+</body></html>

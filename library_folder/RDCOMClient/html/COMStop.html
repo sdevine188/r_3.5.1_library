@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: General Error function for COM errors</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for COMStop {RDCOMClient}"><tr><td>COMStop {RDCOMClient}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>General Error function for COM errors</h2>
+
+<h3>Description</h3>
+
+<p>This is a general function for raising an exception
+in a DCOM computation from within R.
+It takes a message and a status  code (an integer from the DCOM
+operation) and raises an error.
+The class of the error can be specified allowing for
+different types of errors to be distinguished.
+It is the ability to specify the class of the error
+that makes this general.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+COMStop(msg, status, class)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>msg</code></td>
+<td>
+<p>a message string to display in the error, intended to be
+human readable.</p>
+</td></tr>
+<tr valign="top"><td><code>status</code></td>
+<td>
+<p>an integer that identifies the type of the DCOM error.
+These are interpreted relative to a table of errors.
+We should make this available from the R language
+by accessing the C structures.
+</p>
+</td></tr>
+<tr valign="top"><td><code>class</code></td>
+<td>
+<p>a character vector giving the name of the class(es) for
+the error being created.
+One can specify different class names to allow error handlers
+to easily differentiate between types of errors using
+<code><a href="../../base/html/tryCatch.html">tryCatch</a></code>.</p>
+</td></tr>
+</table>
+
+
+<h3>Details</h3>
+
+<p>This uses the exception mechanism in R to provide extensible
+error objects that can be caught in a flexible manner.
+</p>
+
+
+<h3>Value</h3>
+
+<p>An error object of the class specified by <code>class</code>.
+</p>
+
+
+<h3>Author(s)</h3>
+
+<p>Duncan Temple Lang &lt;duncan@r-project.org&gt;</p>
+
+
+<h3>References</h3>
+
+<p>http://www.omegahat.net/RDCOMServer
+http://www.omegahat.net/RDCOMClient
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code><a href=".COM.html">.COM</a></code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+## Not run: 
+   COMStop("A fake error message", 1, "FakeCOMError")
+
+## End(Not run)
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>RDCOMClient</em> version 0.93-0 <a href="00Index.html">Index</a>]</div>
+</body></html>

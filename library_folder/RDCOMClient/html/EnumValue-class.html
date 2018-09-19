@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: A class to represent a value of an enumerated constant</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for EnumValue-class {RDCOMClient}"><tr><td>EnumValue-class {RDCOMClient}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>A class to represent a value of an enumerated constant</h2>
+
+<h3>Description</h3>
+
+<p>This class is intended to be used to represent a value that originates
+from an enumerated constant.  The idea is that this value carries
+around the value and the symbolic name.  Additionally, if an object of
+a enumerated type is expected, an integer or character string could be
+supplied and its value compared to a definition of the enumeration in
+R.
+</p>
+<p>It is expected that users would create new classes derived from this
+one for each new enumeration type that is encountered.  The definition
+of the enumerated constant values would be identified from the class
+name of the new class. See <code><a href="EnumValue.html">EnumValue</a></code>.
+</p>
+
+
+<h3>Objects from the Class</h3>
+
+<p>Objects can be created by calls of the form <code>new("EnumValue", ...)</code>
+or via the function <code><a href="EnumValue.html">EnumValue</a></code> with an instance
+of the appropriate target class specified.
+</p>
+
+
+<h3>Slots</h3>
+
+
+<dl>
+<dt><code>.Data</code>:</dt><dd><p>Object of class <code>"integer"</code>,
+giving the value. This must have the associated name
+which makes it the symbolic constant.
+</p>
+</dd>
+</dl>
+
+
+
+<h3>Extends</h3>
+
+<p>Class <code>"integer"</code>, from data part.
+Class <code>"vector"</code>, by class <code>"integer"</code>.
+Class <code>"numeric"</code>, by class <code>"integer"</code>.
+</p>
+
+
+<h3>Methods</h3>
+
+
+<dl>
+<dt>show</dt><dd><p><code>signature(object = "EnumValue")</code>: 
+this takes care of displaying the value as a regular named integer
+giving the human-readable form and its value.</p>
+</dd>
+</dl>
+
+
+
+<h3>Author(s)</h3>
+
+<p>Duncan Temple Lang (duncan@r-project.org)</p>
+
+
+<h3>See Also</h3>
+
+<p><code><a href="EnumValue.html">EnumValue</a></code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+
+   # Define a new Enumeration class. 
+ setClass("Color", contains = "EnumValue")
+       # Define the enumeration definition table.
+ ColorEnum = c(Red = 1, Green = 2, Blue = 3)
+ storage.mode(ColorEnum) = "integer"
+
+  # Set the coercion methods to take a number or a string 
+  # to this class type.
+ setAs("character", "Color",
+         function(from)
+            EnumValue(from, new("Color")))
+
+ setAs("numeric", "Color",
+         function(from)
+            EnumValue(from, new("Color")))
+
+
+   # Now we can use this class.
+  as(1, "Color")
+  as("Red", "Color")
+
+  as("Blue", "Color")
+ 
+    # These should give errors, so we enclose them in a call to try. 
+  try(as("Orange", "Color"))
+  try(as(20, "Color"))
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>RDCOMClient</em> version 0.93-0 <a href="00Index.html">Index</a>]</div>
+</body></html>

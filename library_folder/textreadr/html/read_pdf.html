@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Read a Portable Document Format into R</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for read_pdf {textreadr}"><tr><td>read_pdf {textreadr}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Read a Portable Document Format into R</h2>
+
+<h3>Description</h3>
+
+<p>A wrapper for <code><a href="../../pdftools/html/pdf_text.html">pdf_text</a></code> to read PDFs into <span class="pkg">R</span>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+read_pdf(file, skip = 0, remove.empty = TRUE, trim = TRUE, ...)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>file</code></td>
+<td>
+<p>A path to a PDF file.</p>
+</td></tr>
+<tr valign="top"><td><code>skip</code></td>
+<td>
+<p>Integer; the number of lines of the data file to skip before
+beginning to read data.</p>
+</td></tr>
+<tr valign="top"><td><code>remove.empty</code></td>
+<td>
+<p>logical.  If <code>TRUE</code> empty elements in the vector are
+removed.</p>
+</td></tr>
+<tr valign="top"><td><code>trim</code></td>
+<td>
+<p>logical.  If <code>TRUE</code> the leading/training white space is
+removed.</p>
+</td></tr>
+<tr valign="top"><td><code>...</code></td>
+<td>
+<p>Other arguments passed to <code><a href="../../pdftools/html/pdf_text.html">pdf_text</a></code>.</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>Returns a <code><a href="../../base/html/data.frame.html">data.frame</a></code> with the page number
+(<code>page_id</code>), line number (<code>element_id</code>), and the <code>text</code>.
+</p>
+
+
+<h3>Note</h3>
+
+<p>A word of caution from <a href="http://stackoverflow.com/a/9187015/1000343">Carl Witthoft</a>&quot;
+&quot;Just a warning to others who may be hoping to extract data: PDF is a
+container, not a format. If the original document does not contain actual
+text, as opposed to bitmapped images of text or possibly even uglier things
+than I can imagine, nothing other than OCR can help you.&quot;  If the reader has
+OCR needs the <span class="pkg">tesseract</span> package, available on CRAN
+(<a href="https://CRAN.R-project.org/package=tesseract">https://CRAN.R-project.org/package=tesseract</a>), is an &quot;OCR engine with
+Unicode (UTF-8) support&quot; and may be of use.
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code><a href="../../tm/html/readPDF.html">readPDF</a></code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+pdf_dat &lt;- read_pdf(
+    system.file("docs/rl10075oralhistoryst002.pdf", package = "textreadr")
+)
+
+pdf_dat_b &lt;- read_pdf(
+    system.file("docs/rl10075oralhistoryst002.pdf", package = "textreadr"),
+    skip = 1
+)
+
+## Not run: 
+library(textshape)
+system.file("docs/rl10075oralhistoryst002.pdf", package = "textreadr") %&gt;%
+    read_pdf(1) %&gt;%
+    `[[`('text') %&gt;%
+    head(-1) %&gt;%
+    textshape::combine() %&gt;%
+    gsub("([A-Z])( )([A-Z])", "\\1_\\3", .) %&gt;%
+    strsplit("(-| )(?=[A-Z_]+:)", perl=TRUE) %&gt;%
+    `[[`(1) %&gt;%
+    textshape::split_transcript()
+
+## End(Not run)
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>textreadr</em> version 0.8.0 <a href="00Index.html">Index</a>]</div>
+</body></html>

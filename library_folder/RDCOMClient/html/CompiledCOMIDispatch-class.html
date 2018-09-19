@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: DCOM Interface object with knowledge of its methods and their...</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for CompiledCOMIDispatch-class {RDCOMClient}"><tr><td>CompiledCOMIDispatch-class {RDCOMClient}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>DCOM Interface object with knowledge of its methods and their types.</h2>
+
+<h3>Description</h3>
+
+<p>This class is used as a simple extension of 
+<code><a href="COMIDispatchClass.html">COMIDispatch-class</a></code> to illustrate that 
+it has  information about its methods and properties
+and can make use of this information in coercing
+arguments and return types apporpriately.
+This class is used by &quot;compiled&quot; or generated
+S code that is derived from reading type libraries
+via the <code>SWinTypeLibs</code> package.
+</p>
+<p>The key things we use this class for are to 
+provide special methods for
+the <code>$</code> and <code>[[</code> operators 
+which can take advantage of the pre-computed 
+information. The class is &quot;never&quot; used directly
+but rather is extended to created derived
+classes for particular DCOM interfaces.
+</p>
+
+
+<h3>Objects from the Class</h3>
+
+<p>Objects of this class are not created directly, 
+but typically are implicitly created 
+by calling methods in the compiled/generated code
+created from the type library processing.
+</p>
+
+
+<h3>Slots</h3>
+
+
+<dl>
+<dt><code>ref</code>:</dt><dd><p>Object of class <code>"externalptr"</code>, inherited from
+<code><a href="COMIDispatchClass.html">IUnknown-class</a></code></p>
+</dd>
+</dl>
+
+
+
+<h3>Extends</h3>
+
+<p>Class <code>"COMIDispatch"</code>, directly.
+Class <code>"IUnknown"</code>, by class <code>"COMIDispatch"</code>.
+</p>
+
+
+<h3>Methods</h3>
+
+
+<dl>
+<dt>\$</dt><dd><p><code>signature(x = "CompiledCOMIDispatch")</code>: 
+access a property or call a method.</p>
+</dd>
+<dt>\$&lt;-</dt><dd><p><code>signature(x = "CompiledCOMIDispatch", name = "character")</code>: ... </p>
+</dd>
+<dt>[[</dt><dd><p><code>signature(x = "CompiledCOMIDispatch", i = "character")</code>: ... </p>
+</dd>
+</dl>
+
+
+
+<h3>Author(s)</h3>
+
+<p>Duncan Temple Lang (duncan@r-project.org)</p>
+
+
+<h3>References</h3>
+
+<p><a href="http://www.omegahat.net/RDCOMClient">http://www.omegahat.net/RDCOMClient</a>
+<a href="http://www.omegahat.net/RDCOMServer">http://www.omegahat.net/RDCOMServer</a>
+<a href="http://www.omegahat.net/SWinTypeLibs">http://www.omegahat.net/SWinTypeLibs</a>
+<a href="http://www.omegahat.net/SWinRegistry">http://www.omegahat.net/SWinRegistry</a>
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code><a href="COMIDispatchClass.html">COMIDispatch-class</a></code>
+<code><a href="../../SWinTypeLibs/html/generateInterface.html">generateInterface</a></code>
+<code><a href="../../SWinTypeLibs/html/writeCode.html">writeCode</a></code>
+</p>
+
+<hr /><div style="text-align: center;">[Package <em>RDCOMClient</em> version 0.93-0 <a href="00Index.html">Index</a>]</div>
+</body></html>

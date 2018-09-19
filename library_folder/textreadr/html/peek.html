@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Data Frame Viewing</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for peek {textreadr}"><tr><td>peek {textreadr}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Data Frame Viewing</h2>
+
+<h3>Description</h3>
+
+<p><code>peek</code> - Convenience function to view all the columns of the head
+of a truncated <code><a href="../../base/html/data.frame.html">data.frame</a></code>.  <code>peek</code> invisibly returns
+<code>x</code>.  This makes its use ideal in a <span class="pkg">dplyr</span>/<span class="pkg">magrittr</span> pipeline.
+</p>
+<p><code>unpeek</code> - Strips out class <code>textreadr</code> so that the entire
+<code><a href="../../base/html/data.frame.html">data.frame</a></code> will be printed.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+peek(x, n = 10, width = 20, ...)
+
+unpeek(x)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>x</code></td>
+<td>
+<p>A <code><a href="../../base/html/data.frame.html">data.frame</a></code> object.</p>
+</td></tr>
+<tr valign="top"><td><code>n</code></td>
+<td>
+<p>Number of rows to display.</p>
+</td></tr>
+<tr valign="top"><td><code>width</code></td>
+<td>
+<p>The width of the columns to be displayed.</p>
+</td></tr>
+<tr valign="top"><td><code>...</code></td>
+<td>
+<p>For internal use.</p>
+</td></tr>
+</table>
+
+
+<h3>Details</h3>
+
+<p>By default <span class="pkg">dplyr</span> does not print all columns of a data frame
+(<code>tbl_df</code>).  This makes inspection of data difficult at times,
+particularly with text string data.  <code>peek</code> allows the user to see a
+truncated head for inspection purposes.
+</p>
+
+
+<h3>Value</h3>
+
+<p>Prints a truncated head but invisibly returns <code>x</code>.
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code><a href="../../utils/html/head.html">head</a></code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+peek(mtcars)
+peek(presidential_debates_2012)
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>textreadr</em> version 0.8.0 <a href="00Index.html">Index</a>]</div>
+</body></html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Read In Multiple Files From a Directory</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for read_dir {textreadr}"><tr><td>read_dir {textreadr}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Read In Multiple Files From a Directory</h2>
+
+<h3>Description</h3>
+
+<p>Read in multiple files from a directory and create a
+<code><a href="../../base/html/data.frame.html">data.frame</a></code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+read_dir(path, pattern = NULL, doc.col = "document", all.files = FALSE,
+  recursive = FALSE, ignore.case = FALSE, ...)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>path</code></td>
+<td>
+<p>Path to the directory.</p>
+</td></tr>
+<tr valign="top"><td><code>pattern</code></td>
+<td>
+<p>An optional regular expression. Only file names which match
+the regular expression will be returned.</p>
+</td></tr>
+<tr valign="top"><td><code>doc.col</code></td>
+<td>
+<p>A string naming the document columns (i.e., file names sans
+file extension).</p>
+</td></tr>
+<tr valign="top"><td><code>all.files</code></td>
+<td>
+<p>Logical.   If <code>FALSE</code>, only the names of visible files
+are returned. If <code>TRUE</code>, all file names will be returned.</p>
+</td></tr>
+<tr valign="top"><td><code>recursive</code></td>
+<td>
+<p>Logical. Should the listing recurse into directories?</p>
+</td></tr>
+<tr valign="top"><td><code>ignore.case</code></td>
+<td>
+<p>logical.  If <code>TRUE</code> case in the <code>pattern</code> argument 
+will be ignored.</p>
+</td></tr>
+<tr valign="top"><td><code>...</code></td>
+<td>
+<p>Other arguments passed to read_document functions.</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>Returns a <code><a href="../../base/html/data.frame.html">data.frame</a></code> with file names as a document
+column and content as a text column.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+read_dir(system.file("docs/Maas2011/pos", package = "textreadr"))
+read_dir(system.file("docs/Maas2011", package = "textreadr"), recursive=TRUE)
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>textreadr</em> version 0.8.0 <a href="00Index.html">Index</a>]</div>
+</body></html>

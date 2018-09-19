@@ -1,0 +1,3 @@
+read_rtf                Extract Text from RTF (Rich Text Format) File
+striprtf-deprecated     Renamed Functions
+unused_letters          Find letters not used in strings

@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Download Documents</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for download {textreadr}"><tr><td>download {textreadr}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Download Documents</h2>
+
+<h3>Description</h3>
+
+<p>This function enables downloading documents.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+download(url, loc = tempdir(), file.out = NULL)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>url</code></td>
+<td>
+<p>The download url(s).</p>
+</td></tr>
+<tr valign="top"><td><code>loc</code></td>
+<td>
+<p>Where to put the files.</p>
+</td></tr>
+<tr valign="top"><td><code>file.out</code></td>
+<td>
+<p>Option vector of names matching <code>url</code>.  If this is not
+given <code>download</code> will try to create a name from <code>url</code>.</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>Places a copy of the downloaded document in location specified and returns
+vector of the locations as string paths.
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+## Not run: 
+m &lt;- download(
+c('https://cran.r-project.org/web/packages/curl/curl.pdf',
+"https://github.com/trinker/textreadr/raw/master/inst/docs/rl10075oralhistoryst002.pdf"),
+)
+
+m
+
+## End(Not run)
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>textreadr</em> version 0.8.0 <a href="00Index.html">Index</a>]</div>
+</body></html>
