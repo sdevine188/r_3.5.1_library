@@ -1,0 +1,90 @@
+---
+title: "WordR Package"
+author: "Tomas Hovorka (tomashovorka@seznam.cz)"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{WordR Package}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+`WordR` package enables creating MS Word files (.docx) from given MS Word template. It can evaluate inline R code, insert tables and plots. `WordR` package is technically a wrapper around a powerful package `officer`.
+
+# Motivation
+
+R language has many ways for producing state-of-the-art reports. For example `rmarkdown` or `Sweave` packages are very effective in preparing reports in PDF format or R2wd for creating a MS Word report from scratch. However, such techniques has some drawbacks:
+
+- For nontechnical person it is very difficult to prepare the source (template) file.
+- It is not conveniently possible to further edit the resulting report (if rendered into e.g. PDF).
+- Formatting possibilities with `rmarkdown` or `R2wd` are limited and with `Sweave` complicated (LateX knowledge required).
+
+On the other hand, `WordR` package, enables
+
+- preparation of the source file in MS Word, with all the bells and whistles it offers (and drawbacks!),
+- result is also editable MS Word document,
+- such document can be later saved as PDF from MS Word if needed.
+
+To conclude, `WordR` package is useful, for example, when you need to 
+
+- periodically prepare static report and/or 
+- want non-technical people (who can use MS Word but not R) to be able to prepare majority of the template and/or
+- want the resulting report being editable, for example, for adding additional custom interpretation, based on the current results, without need to change the input template.
+
+# How to use the WordR package
+
+All examples, and instructions given in this document applies to MS Word 2013. No major differences are expected to other versions (as of 2017).
+
+## Template preparation
+First we need to create a template (.docx) file. Such file may contain any formatting MS Word allows. Apart from that, the template may contain two other things:
+
+- inline R code
+- bookmarks for inserting Tables or Plots
+
+Examples can be found in the examples folder of the package.
+
+### Creating inline R code
+This functionality enables including simple R expression(s) in the Word document, which is evaluated during file rendering. The result of the expression need to be a string of length one (or something coercible to character(1)). Line breaks cannot be inserted in this way. Because of used workflow, each R inline expression need to be a separate paragraph. However, MS Word offers a way how to do an inline paragraph.
+Steps for creating an inline expression:
+
+- Open MS Word, create a new file or open an existing one
+- locate the cursor on the place where you want to have the R expression
+- insert style separator by pressing `Ctrl+Alt+Enter` (it is preferable to have formatting symbols visible by clicking the "new line" sign button on `Home>Paragraph` panel in MS Word)
+- type `` `r "\u0060r expression\u0060"` ``, where `expression` is R expression like `1+1`. 
+- insert style separator again
+- if you want the result to be in non-default format, insert cursor into the inline code area and select the desired format from `Styles` menu. (Do not select the r code as that would change the style for the text not the whole r inline code paragraph)
+
+As a result you should see something like this:
+![Inline Code](lineWithCode.gif)
+
+Example can be seen in file `examples/templates/template1.docx`.
+
+#### Troubleshooting the inline code
+- How to insert corect (straight) quotes (`'` or `"`): MS Word is, by default (maybe depends on local settings), changing the quotes to 'Smart quotes'. You can change it the MS Word settings under `Proofing > AutoCorrect Options > Autoformat as you type...` You can de-select Straight Quotes as Smart Quotes and that should revert the quotes to being straight. Or when typing, right after you type a quote, if Word turns it into a "smart quote," immediately press `Ctrl-Z`.
+- The expression does not evaluate as expected: Just try to evaluate it in the environment where you are running the `renderInlineCode` function, and make sure its output is character of length one.
+- The output is not in desired style: insert cursor into the inline code paragraph and select the desired style from `Styles` menu in MS Word.
+
+### Inserting bookmarks for Plots or Tables
+
+Example and more info about bookmarks in MS Word can be seen in file `examples/templates/templateFT.docx`
+
+To render a table on a given place, just insert a bookmark with name `t_XYZ` where XYZ will be a name of a flextable (`flextable::flextable`) table.
+
+
+To render a plot on a given place, just insert a bookmark with name `p_XYZ` where XYZ will be a name of plot function.
+
+
+
+## Template rendering
+
+Functions for rendering the MS Word file are the main content of the WordR package. Typical rendering R script contains following steps:
+
+- calculation of the outputs - tables, plots and values for inline expressions
+- running `renderInlineCode` on the prepared template file
+- running `body_add_flextables` on the file resulting from previous step
+- running `addPlots` on the file resulting from previous step
+
+Examples can be seen in `examples/examples.R`.
+
+

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="author" content="Tomas Hovorka (tomashovorka@seznam.cz)" />
+
+<meta name="date" content="2018-07-19" />
+
+<title>WordR Package</title>
+
+
+
+
+
+
+<link href="data:text/css;charset=utf-8,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23header%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%20code%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">WordR Package</h1>
+<h4 class="author"><em>Tomas Hovorka (<a href="mailto:tomashovorka@seznam.cz">tomashovorka@seznam.cz</a>)</em></h4>
+<h4 class="date"><em>2018-07-19</em></h4>
+
+
+
+<p><code>WordR</code> package enables creating MS Word files (.docx) from given MS Word template. It can evaluate inline R code, insert tables and plots. <code>WordR</code> package is technically a wrapper around a powerful package <code>officer</code>.</p>
+<div id="motivation" class="section level1">
+<h1>Motivation</h1>
+<p>R language has many ways for producing state-of-the-art reports. For example <code>rmarkdown</code> or <code>Sweave</code> packages are very effective in preparing reports in PDF format or R2wd for creating a MS Word report from scratch. However, such techniques has some drawbacks:</p>
+<ul>
+<li>For nontechnical person it is very difficult to prepare the source (template) file.</li>
+<li>It is not conveniently possible to further edit the resulting report (if rendered into e.g. PDF).</li>
+<li>Formatting possibilities with <code>rmarkdown</code> or <code>R2wd</code> are limited and with <code>Sweave</code> complicated (LateX knowledge required).</li>
+</ul>
+<p>On the other hand, <code>WordR</code> package, enables</p>
+<ul>
+<li>preparation of the source file in MS Word, with all the bells and whistles it offers (and drawbacks!),</li>
+<li>result is also editable MS Word document,</li>
+<li>such document can be later saved as PDF from MS Word if needed.</li>
+</ul>
+<p>To conclude, <code>WordR</code> package is useful, for example, when you need to</p>
+<ul>
+<li>periodically prepare static report and/or</li>
+<li>want non-technical people (who can use MS Word but not R) to be able to prepare majority of the template and/or</li>
+<li>want the resulting report being editable, for example, for adding additional custom interpretation, based on the current results, without need to change the input template.</li>
+</ul>
+</div>
+<div id="how-to-use-the-wordr-package" class="section level1">
+<h1>How to use the WordR package</h1>
+<p>All examples, and instructions given in this document applies to MS Word 2013. No major differences are expected to other versions (as of 2017).</p>
+<div id="template-preparation" class="section level2">
+<h2>Template preparation</h2>
+<p>First we need to create a template (.docx) file. Such file may contain any formatting MS Word allows. Apart from that, the template may contain two other things:</p>
+<ul>
+<li>inline R code</li>
+<li>bookmarks for inserting Tables or Plots</li>
+</ul>
+<p>Examples can be found in the examples folder of the package.</p>
+<div id="creating-inline-r-code" class="section level3">
+<h3>Creating inline R code</h3>
+<p>This functionality enables including simple R expression(s) in the Word document, which is evaluated during file rendering. The result of the expression need to be a string of length one (or something coercible to character(1)). Line breaks cannot be inserted in this way. Because of used workflow, each R inline expression need to be a separate paragraph. However, MS Word offers a way how to do an inline paragraph. Steps for creating an inline expression:</p>
+<ul>
+<li>Open MS Word, create a new file or open an existing one</li>
+<li>locate the cursor on the place where you want to have the R expression</li>
+<li>insert style separator by pressing <code>Ctrl+Alt+Enter</code> (it is preferable to have formatting symbols visible by clicking the “new line” sign button on <code>Home&gt;Paragraph</code> panel in MS Word)</li>
+<li>type <code>`r expression`</code>, where <code>expression</code> is R expression like <code>1+1</code>.</li>
+<li>insert style separator again</li>
+<li>if you want the result to be in non-default format, insert cursor into the inline code area and select the desired format from <code>Styles</code> menu. (Do not select the r code as that would change the style for the text not the whole r inline code paragraph)</li>
+</ul>
+<p>As a result you should see something like this: <img src="data:image/gif;base64,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" alt="Inline Code" /></p>
+<p>Example can be seen in file <code>examples/templates/template1.docx</code>.</p>
+<div id="troubleshooting-the-inline-code" class="section level4">
+<h4>Troubleshooting the inline code</h4>
+<ul>
+<li>How to insert corect (straight) quotes (<code>'</code> or <code>&quot;</code>): MS Word is, by default (maybe depends on local settings), changing the quotes to ‘Smart quotes’. You can change it the MS Word settings under <code>Proofing &gt; AutoCorrect Options &gt; Autoformat as you type...</code> You can de-select Straight Quotes as Smart Quotes and that should revert the quotes to being straight. Or when typing, right after you type a quote, if Word turns it into a “smart quote,” immediately press <code>Ctrl-Z</code>.</li>
+<li>The expression does not evaluate as expected: Just try to evaluate it in the environment where you are running the <code>renderInlineCode</code> function, and make sure its output is character of length one.</li>
+<li>The output is not in desired style: insert cursor into the inline code paragraph and select the desired style from <code>Styles</code> menu in MS Word.</li>
+</ul>
+</div>
+</div>
+<div id="inserting-bookmarks-for-plots-or-tables" class="section level3">
+<h3>Inserting bookmarks for Plots or Tables</h3>
+<p>Example and more info about bookmarks in MS Word can be seen in file <code>examples/templates/templateFT.docx</code></p>
+<p>To render a table on a given place, just insert a bookmark with name <code>t_XYZ</code> where XYZ will be a name of a flextable (<code>flextable::flextable</code>) table.</p>
+<p>To render a plot on a given place, just insert a bookmark with name <code>p_XYZ</code> where XYZ will be a name of plot function.</p>
+</div>
+</div>
+<div id="template-rendering" class="section level2">
+<h2>Template rendering</h2>
+<p>Functions for rendering the MS Word file are the main content of the WordR package. Typical rendering R script contains following steps:</p>
+<ul>
+<li>calculation of the outputs - tables, plots and values for inline expressions</li>
+<li>running <code>renderInlineCode</code> on the prepared template file</li>
+<li>running <code>body_add_flextables</code> on the file resulting from previous step</li>
+<li>running <code>addPlots</code> on the file resulting from previous step</li>
+</ul>
+<p>Examples can be seen in <code>examples/examples.R</code>.</p>
+</div>
+</div>
+
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

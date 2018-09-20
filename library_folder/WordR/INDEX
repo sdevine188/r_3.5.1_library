@@ -1,0 +1,13 @@
+WordR                   WordR: package for rendering MS Word documents
+                        with R inline code and inserting tables and
+                        plots.
+addPlots                Read Word document with bookmarks and create
+                        other Word document with rendered plots in
+                        place.
+body_add_flextables     Read Word document with bookmarks and create
+                        other Word document with rendered tables in
+                        place.
+examplePath             Returns path to examples folder
+renderInlineCode        Read Word document with R code blocks, evaluate
+                        them and writes the result into another Word
+                        document.
