@@ -1,0 +1,185 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Add custom styles to one or more cells</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for tab_style {gt}"><tr><td>tab_style {gt}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Add custom styles to one or more cells</h2>
+
+<h3>Description</h3>
+
+<p>With the <code>tab_style()</code> function we can target specific cells and apply
+styles to them. This is best done in conjunction with the
+<code><a href="cells_styles.html">cells_styles</a>()</code> helper function. At present this function is
+focused on the application of styles for HTML output only (as such, other
+output formats will ignore all <code>tab_style()</code> calls). With the help of
+<code><a href="cells_styles.html">cells_styles</a>()</code>, we can set the following styles:
+</p>
+
+<ul>
+<li><p> the background color of the cell (<code>bkgd_color</code>)
+</p>
+</li>
+<li><p> the cell's text color (<code>text_color</code>), font (<code>text_font</code>), or
+size (<code>text_size</code>)
+</p>
+</li>
+<li><p> the text style (<code>text_style</code>), enabling the use of italics or
+oblique text.
+</p>
+</li>
+<li><p> text decoration (<code>text_decorate</code>): use overlines, line-throughs,
+or underlines
+</p>
+</li>
+<li><p> text transformations (<code>text_transform</code>) that result in lowercased,
+uppercased, or capitalized text
+</p>
+</li>
+<li><p> the text weight (<code>text_weight</code>), allowing the use of thin to
+bold text (the degree of choice is greater with variable fonts)
+</p>
+</li>
+<li><p> the alignment of text (<code>text_align</code>)
+</p>
+</li>
+<li><p> a stretching property for text that condenses or expands text
+(<code>text_stretch</code>)
+</p>
+</li>
+<li><p> the text indentation (<code>text_indent</code>)
+</p>
+</li></ul>
+
+
+
+<h3>Usage</h3>
+
+<pre>
+tab_style(data, style, locations)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>data</code></td>
+<td>
+<p>a table object that is created using the <code><a href="gt.html">gt</a>()</code>
+function.</p>
+</td></tr>
+<tr valign="top"><td><code>style</code></td>
+<td>
+<p>a vector of styles to use. The <code><a href="cells_styles.html">cells_styles</a>()</code>
+helper function can be used here to more easily generate valid styles.</p>
+</td></tr>
+<tr valign="top"><td><code>locations</code></td>
+<td>
+<p>the cell or set of cells to be associated with the style
+Supplying any of the <code>cells_*()</code> helper functions is a useful way to
+target the location cells that are associated with the style application.
+These helper functions are: <code><a href="location_cells.html">cells_title</a>()</code>,
+<code><a href="location_cells.html">cells_column_labels</a>()</code>, <code><a href="location_cells.html">cells_group</a>()</code>,
+<code><a href="location_cells.html">cells_stub</a>()</code>, <code><a href="location_cells.html">cells_data</a>()</code>, and
+<code><a href="location_cells.html">cells_summary</a>()</code>. Please see the help article
+<a href="location_cells.html">location_cells</a> for more information on how these helper functions
+can be used. Additionally, we can enclose several <code>cells_*()</code> calls
+within a <code>list()</code> if we wish to apply styles to different types of
+locations (e.g., cell data values, stub group headings, the table title,
+etc.).</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>an object of class <code>gt_tbl</code>.
+</p>
+
+
+<h3>Figures</h3>
+
+<p><img src="../help/figures/man_tab_style_1.svg" width=100% />
+</p>
+<p><img src="../help/figures/man_tab_style_2.svg" width=100% />
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code><a href="cells_styles.html">cells_styles</a>()</code> as a helper for defining custom styles
+and <code><a href="location_cells.html">cells_data</a>()</code> as a useful helper function for targeting
+one or more data cells to be styled.
+</p>
+<p>Other table-part creation/modification functions: <code><a href="gt_preview.html">gt_preview</a></code>,
+<code><a href="gt.html">gt</a></code>, <code><a href="tab_footnote.html">tab_footnote</a></code>,
+<code><a href="tab_header.html">tab_header</a></code>, <code><a href="tab_options.html">tab_options</a></code>,
+<code><a href="tab_row_group.html">tab_row_group</a></code>,
+<code><a href="tab_source_note.html">tab_source_note</a></code>, <code><a href="tab_spanner.html">tab_spanner</a></code>,
+<code><a href="tab_stubhead_label.html">tab_stubhead_label</a></code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+# Use `exibble` to create a gt table;
+# add styles that are to be applied
+# to data cells that satisfy a
+# condition (using `tab_style()`)
+tab_1 &lt;-
+  exibble %&gt;%
+  dplyr::select(num, currency) %&gt;%
+  gt() %&gt;%
+  fmt_number(
+    columns = vars(num, currency),
+    decimals = 1
+  ) %&gt;%
+  tab_style(
+    style = cells_styles(
+      bkgd_color = "lightcyan",
+      text_weight = "bold"),
+    locations = cells_data(
+      columns = vars(num),
+      rows = num &gt;= 5000)
+  ) %&gt;%
+  tab_style(
+    style = cells_styles(
+      bkgd_color = "#F9E3D6",
+      text_style = "italic"),
+    locations = cells_data(
+      columns = vars(currency),
+      rows = currency &lt; 100)
+  )
+
+# Use `sp500` to create a gt table;
+# color entire rows of cells based
+# on values in a particular column
+tab_2 &lt;-
+  sp500 %&gt;%
+  dplyr::filter(
+    date &gt;= "2015-12-01" &amp;
+    date &lt;= "2015-12-15"
+  ) %&gt;%
+  dplyr::select(-c(adj_close, volume)) %&gt;%
+  dplyr::mutate(date = as.character(date)) %&gt;%
+  gt() %&gt;%
+  tab_style(
+    style = cells_styles(
+      bkgd_color = "lightgreen"),
+    locations = cells_data(
+      rows = close &gt; open)
+  ) %&gt;%
+  tab_style(
+    style = cells_styles(
+      bkgd_color = "crimson",
+      text_color = "white"),
+    locations = cells_data(
+      rows = open &gt; close)
+  )
+
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>gt</em> version 0.1.0 <a href="00Index.html">Index</a>]</div>
+</body></html>

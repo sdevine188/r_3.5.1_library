@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Helper for defining custom styles for table cells</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for cells_styles {gt}"><tr><td>cells_styles {gt}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Helper for defining custom styles for table cells</h2>
+
+<h3>Description</h3>
+
+<p>This helper function is to be used with the <code><a href="tab_style.html">tab_style</a>()</code>
+function, which itself allows for the setting of custom styles to one or more
+cells. We can also define several styles within a single call of
+<code>cells_styles</code> and <code><a href="tab_style.html">tab_style</a>()</code> will reliably apply those
+styles to the targeted element.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+cells_styles(bkgd_color = NULL, text_color = NULL, text_font = NULL,
+  text_size = NULL, text_align = NULL, text_style = NULL,
+  text_weight = NULL, text_stretch = NULL, text_indent = NULL,
+  text_decorate = NULL, text_transform = NULL)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>bkgd_color</code></td>
+<td>
+<p>the background color of the cell.</p>
+</td></tr>
+<tr valign="top"><td><code>text_color</code></td>
+<td>
+<p>the text color.</p>
+</td></tr>
+<tr valign="top"><td><code>text_font</code></td>
+<td>
+<p>the font or collection of fonts (subsequent font names are)
+used as fallbacks.</p>
+</td></tr>
+<tr valign="top"><td><code>text_size</code></td>
+<td>
+<p>the size of the font. Can be provided as a number that is
+assumed to represent <code>px</code> values (or could be wrapped in the
+<code><a href="px.html">px</a>()</code>) helper function. We can also use one of the following
+absolute size keywords: <code>xx-small</code>, <code>x-small</code>, <code>small</code>,
+<code>medium</code>, <code>large</code>, <code>x-large</code>, or <code>xx-large</code>.</p>
+</td></tr>
+<tr valign="top"><td><code>text_align</code></td>
+<td>
+<p>the text alignment. Can be one of either <code>"center"</code>,
+<code>"left"</code>, <code>"right"</code>, or <code>"justify"</code>.</p>
+</td></tr>
+<tr valign="top"><td><code>text_style</code></td>
+<td>
+<p>the text style. Can be one of either <code>"center"</code>,
+<code>"normal"</code>, <code>"italic"</code>, or <code>"oblique"</code>.</p>
+</td></tr>
+<tr valign="top"><td><code>text_weight</code></td>
+<td>
+<p>the weight of the font. Can be a text-based keyword such
+as <code>"normal"</code>, <code>"bold"</code>, <code>"lighter"</code>, <code>"bolder"</code>, or, a
+numeric value between <code>1</code> and <code>1000</code>, inclusive. Note that only
+variable fonts may support the numeric mapping of weight.</p>
+</td></tr>
+<tr valign="top"><td><code>text_stretch</code></td>
+<td>
+<p>allows for text to either be condensed or expanded. We
+can use the following text-based keywords to describe the degree of
+condensation/expansion: <code>ultra-condensed</code>, <code>extra-condensed</code>,
+<code>condensed</code>, <code>semi-condensed</code>, <code>normal</code>,
+<code>semi-expanded</code>, <code>expanded</code>, <code>extra-expanded</code>, and
+<code>ultra-expanded</code>. Alternatively, we can supply percentage values from
+<code>0%</code> to <code>200%</code>, inclusive. Negative percentage values are not
+allowed.</p>
+</td></tr>
+<tr valign="top"><td><code>text_indent</code></td>
+<td>
+<p>the indentation of the text.</p>
+</td></tr>
+<tr valign="top"><td><code>text_decorate</code></td>
+<td>
+<p>allows for text decoration effect to be applied. Here,
+we can use <code>"overline"</code>, <code>"line-through"</code>, or <code>"underline"</code>.</p>
+</td></tr>
+<tr valign="top"><td><code>text_transform</code></td>
+<td>
+<p>allows for the transformation of text. Options are
+<code>"uppercase"</code>, <code>"lowercase"</code>, or <code>"capitalize"</code>.</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>a character vector containing formatted styles.
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other helper functions: <code><a href="escape_latex.html">escape_latex</a></code>,
+<code><a href="gt_latex_dependencies.html">gt_latex_dependencies</a></code>, <code><a href="html.html">html</a></code>,
+<code><a href="md.html">md</a></code>, <code><a href="pct.html">pct</a></code>, <code><a href="px.html">px</a></code>
+</p>
+
+<hr /><div style="text-align: center;">[Package <em>gt</em> version 0.1.0 <a href="00Index.html">Index</a>]</div>
+</body></html>

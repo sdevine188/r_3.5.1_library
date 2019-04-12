@@ -1,0 +1,49 @@
+Type: Package
+Package: gt
+Version: 0.1.0
+Title: Easily Create Presentation-Ready Display Tables
+Description: Build display tables from tabular data using with an easy-to-use
+    API. With its progressive approach, we can construct display tables with a
+    clear separation of concerns: you don't have to decide how the tabular data
+    gets transformed and structured whilst also worrying about aesthetics.
+Authors@R: c(
+    person("Richard", "Iannone", , "rich@rstudio.com", c("aut", "cre"),
+           comment = c(ORCID = "0000-0003-3925-190X")),
+    person("Joe", "Cheng", , "joe@rstudio.com", "aut"),
+    person("Barret", "Schloerke", , "barret@rstudio.com", "aut",
+           comment = c(ORCID = "0000-0001-9986-114X")),
+    person("RStudio", role = c("cph", "fnd"))
+    )
+License: MIT + file LICENSE
+URL: https://github.com/rstudio/gt
+BugReports: https://github.com/rstudio/gt/issues
+Encoding: UTF-8
+LazyData: true
+ByteCompile: true
+RoxygenNote: 6.1.1
+Depends: R (>= 3.2.0)
+Imports: checkmate (>= 1.8.5), commonmark (>= 1.7), dplyr (>= 0.7.8),
+        ggplot2 (>= 3.1.0), glue (>= 1.3.0), htmltools (>= 0.3.6),
+        magrittr (>= 1.5), rlang (>= 0.3.0), scales (>= 1.0.0), sass
+        (>= 0.1.0), stringr (>= 1.3.1), tibble (>= 1.4.2), tidyr (>=
+        0.8.2), tidyselect (>= 0.2.5)
+Remotes: rstudio/sass
+Suggests: knitr, paletteer, testthat, RColorBrewer, rmarkdown, rvest,
+        shiny, xml2
+VignetteBuilder: knitr
+Author: Richard Iannone [aut, cre] (<https://orcid.org/0000-0003-3925-190X>),
+  Joe Cheng [aut],
+  Barret Schloerke [aut] (<https://orcid.org/0000-0001-9986-114X>),
+  RStudio [cph, fnd]
+Maintainer: Richard Iannone <rich@rstudio.com>
+Built: R 3.5.1; ; 2019-01-21 17:37:22 UTC; windows
+RemoteType: github
+RemoteHost: https://api.github.com
+RemoteRepo: gt
+RemoteUsername: rstudio
+RemoteRef: master
+RemoteSha: 395d6e286020b2f3dbb92d2743a1f2955945512e
+GithubRepo: gt
+GithubUsername: rstudio
+GithubRef: master
+GithubSHA1: 395d6e286020b2f3dbb92d2743a1f2955945512e

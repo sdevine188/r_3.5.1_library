@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Create a 'gt' table object</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for gt {gt}"><tr><td>gt {gt}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Create a <span class="pkg">gt</span> table object</h2>
+
+<h3>Description</h3>
+
+<p>The <code>gt()</code> function creates a <span class="pkg">gt</span> table object when provided with
+table data. Using this function is the first step in a typical <span class="pkg">gt</span>
+workflow. Once we have the <span class="pkg">gt</span> table object, we can perform styling
+transformations before rendering to a display table of various formats (e.g.,
+HTML, LaTeX, RTF).
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+gt(data, rowname_col = "rowname", groupname_col = "groupname",
+  rownames_to_stub = FALSE,
+  stub_group.sep = getOption("gt.stub_group.sep", " - "))
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>data</code></td>
+<td>
+<p>a <code>data.frame</code> object or a tibble.</p>
+</td></tr>
+<tr valign="top"><td><code>rowname_col</code></td>
+<td>
+<p>the column name in the input <code>data</code> table to use as
+row captions to be placed in the display table stub.</p>
+</td></tr>
+<tr valign="top"><td><code>groupname_col</code></td>
+<td>
+<p>the column name in the input <code>data</code> table to use as
+group labels for generation of stub row groups.</p>
+</td></tr>
+<tr valign="top"><td><code>rownames_to_stub</code></td>
+<td>
+<p>an option to take rownames from the input <code>data</code>
+table as row captions in the display table stub.</p>
+</td></tr>
+<tr valign="top"><td><code>stub_group.sep</code></td>
+<td>
+<p>the separator to use between consecutive group names (a
+possibility when providing <code>data</code> as a <code>grouped_df</code> with multiple
+groups) in the displayed stub row group label.</p>
+</td></tr>
+</table>
+
+
+<h3>Details</h3>
+
+<p>There are a few data ingest options we can consider at this stage. We can
+choose to create a table stub with rowname captions using the
+<code>rowname_col</code> argument. Further to this, stub row groups can be created
+with the <code>groupname_col</code>. Both arguments take the name of a column in
+the input table data. Typically, the data in the <code>groupname_col</code> will
+consist of categories of data in a table and the data in the
+<code>rowname_col</code> are unique labels (perhaps unique across the entire table
+or unique within groups).
+</p>
+<p>Row groups can also be created by passing a <code>grouped_df</code> to <code>gt()</code>
+by using the <code>dplyr::group_by()</code> function on the table data. In this
+way, two or more columns of categorical data can be used to make row groups.
+The <code>stub_group.sep</code> argument allows for control in how the row group
+label will appear in the display table.
+</p>
+
+
+<h3>Value</h3>
+
+<p>an object of class <code>gt_tbl</code>.
+</p>
+
+
+<h3>Figures</h3>
+
+<p><img src="../help/figures/man_gt_1.svg" width=100% />
+</p>
+<p><img src="../help/figures/man_gt_2.svg" width=100% />
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other table-part creation/modification functions: <code><a href="gt_preview.html">gt_preview</a></code>,
+<code><a href="tab_footnote.html">tab_footnote</a></code>, <code><a href="tab_header.html">tab_header</a></code>,
+<code><a href="tab_options.html">tab_options</a></code>, <code><a href="tab_row_group.html">tab_row_group</a></code>,
+<code><a href="tab_source_note.html">tab_source_note</a></code>, <code><a href="tab_spanner.html">tab_spanner</a></code>,
+<code><a href="tab_stubhead_label.html">tab_stubhead_label</a></code>, <code><a href="tab_style.html">tab_style</a></code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+# Create a table object using the
+# `exibble` dataset; use the `row`
+# and `group` columns to add a stub
+# and row groups
+tab_1 &lt;-
+  exibble %&gt;%
+  gt(
+    rowname_col = "row",
+    groupname_col = "group"
+  )
+
+# The resulting object can be used
+# in transformations (with `tab_*()`,
+# `fmt_*()`, `cols_*()` functions)
+tab_2 &lt;-
+  tab_1 %&gt;%
+  tab_header(
+    title = "Table Title",
+    subtitle = "Subtitle"
+  ) %&gt;%
+  fmt_number(
+    columns = vars(num),
+    decimals = 2
+  ) %&gt;%
+  cols_label(num = "number")
+
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>gt</em> version 0.1.0 <a href="00Index.html">Index</a>]</div>
+</body></html>

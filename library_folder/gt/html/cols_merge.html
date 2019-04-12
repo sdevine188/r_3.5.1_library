@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Merge two columns to a single column</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for cols_merge {gt}"><tr><td>cols_merge {gt}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Merge two columns to a single column</h2>
+
+<h3>Description</h3>
+
+<p>This function takes any two columns and merges them into a single column,
+using a pattern that specifies how the values in the data cells are combined.
+We specify the columns to merge together in the <code>col_1</code> and <code>col_2</code>
+arguments and the string-combining pattern is specified in <code>pattern</code>.
+The column that is retained is that of <code>col_1</code> whereas the column
+specified in <code>col_2</code> is dropped from the output table.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+cols_merge(data, col_1, col_2, pattern = "{1} {2}")
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>data</code></td>
+<td>
+<p>a table object that is created using the <code><a href="gt.html">gt</a>()</code>
+function.</p>
+</td></tr>
+<tr valign="top"><td><code>col_1</code></td>
+<td>
+<p>a retained column that contains values to be merged with those
+in <code>col_2</code>.</p>
+</td></tr>
+<tr valign="top"><td><code>col_2</code></td>
+<td>
+<p>a column that contains values to be merged with those in
+<code>col_1</code>. This column will be discarded but is still useful as a
+reference in other <span class="pkg">gt</span> functions.</p>
+</td></tr>
+<tr valign="top"><td><code>pattern</code></td>
+<td>
+<p>a formatting pattern that specifies the arrangement of the
+<code>col_1</code> and <code>col_1</code> values and any string literals. The
+<code>col_1</code> column is represented as <code>{1}</code> whereas <code>col_2</code> is
+<code>{2}</code>. All other characters are taken to be string literals.</p>
+</td></tr>
+</table>
+
+
+<h3>Details</h3>
+
+<p>There are two other column-merging functions that offer specialized behavior
+that is optimized for common table tasks: <code><a href="cols_merge_range.html">cols_merge_range</a>()</code>
+and <code><a href="cols_merge_uncert.html">cols_merge_uncert</a>()</code>. These functions operate similarly,
+where the second column specified is dropped from the output table. For all
+of the <code>cols_merge*()</code> functions, column removal occurs late in the
+rendering lifecycle so those secondary columns are still usable as column
+references (e.g., inside expressions provided to 'rows' in the <code>fmt*()</code>
+functions).
+</p>
+
+
+<h3>Value</h3>
+
+<p>an object of class <code>gt_tbl</code>.
+</p>
+
+
+<h3>Figures</h3>
+
+<p><img src="../help/figures/man_cols_merge_1.svg" width=100% />
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other column modification functions: <code><a href="cols_align.html">cols_align</a></code>,
+<code><a href="cols_hide.html">cols_hide</a></code>, <code><a href="cols_label.html">cols_label</a></code>,
+<code><a href="cols_merge_range.html">cols_merge_range</a></code>,
+<code><a href="cols_merge_uncert.html">cols_merge_uncert</a></code>,
+<code><a href="cols_move_to_end.html">cols_move_to_end</a></code>,
+<code><a href="cols_move_to_start.html">cols_move_to_start</a></code>,
+<code><a href="cols_move.html">cols_move</a></code>, <code><a href="cols_split_delim.html">cols_split_delim</a></code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+# Use `sp500` to create a gt table;
+# merge the `open` &amp; `close` columns
+# together, and, the `low` &amp; `high`
+# columns (putting an em dash between
+# both); rename the columns
+tab_1 &lt;-
+  sp500 %&gt;%
+  dplyr::slice(50:55) %&gt;%
+  dplyr::select(-volume, -adj_close) %&gt;%
+  gt() %&gt;%
+  cols_merge(
+    col_1 = vars(open),
+    col_2 = vars(close),
+    pattern = "{1}&amp;mdash;{2}"
+  ) %&gt;%
+  cols_merge(
+    col_1 = vars(low),
+    col_2 = vars(high),
+    pattern = "{1}&amp;mdash;{2}"
+  ) %&gt;%
+  cols_label(
+    open = "open/close",
+    low = "low/high"
+  )
+
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>gt</em> version 0.1.0 <a href="00Index.html">Index</a>]</div>
+</body></html>

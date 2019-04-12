@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Preview a 'gt' table object</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for gt_preview {gt}"><tr><td>gt_preview {gt}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Preview a <span class="pkg">gt</span> table object</h2>
+
+<h3>Description</h3>
+
+<p>Sometimes you may want to see just a small portion of your input data. We can
+use <code>gt_preview()</code> in place of <code><a href="gt.html">gt</a>()</code> to get the first x
+rows of data and the last y rows of data (which can be set by the
+<code>top_n</code> and <code>bottom_n</code> arguments). It's not advised to use
+additional <span class="pkg">gt</span> API functions to further modify the output of
+<code>gt_preview()</code>. Furthermore, you cannot pass a <span class="pkg">gt</span> object to
+<code>gt_preview()</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+gt_preview(data, top_n = 5, bottom_n = 1, incl_rownums = TRUE)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>data</code></td>
+<td>
+<p>a <code>data.frame</code> object or a tibble.</p>
+</td></tr>
+<tr valign="top"><td><code>top_n</code></td>
+<td>
+<p>this value will be used as the number of rows from the top of
+the table to display. The default, <code>5</code>, will show the first five rows
+of the table.</p>
+</td></tr>
+<tr valign="top"><td><code>bottom_n</code></td>
+<td>
+<p>the value will be used as the number of rows from the bottom
+of the table to display. The default, <code>1</code>, will show the final row of
+the table.</p>
+</td></tr>
+<tr valign="top"><td><code>incl_rownums</code></td>
+<td>
+<p>an option to include the row numbers for <code>data</code> in
+the table stub. By default, this is <code>TRUE</code>.</p>
+</td></tr>
+</table>
+
+
+<h3>Details</h3>
+
+<p>Any grouped data or magic columns such as <code>rowname</code> and <code>groupname</code>
+will be ignored by <code>gt_preview()</code> and, as such, one cannot add a stub or
+group rows in the output table. By default, the output table will include row
+numbers in a stub (including a range of row numbers for the omitted rows).
+This row numbering option can be deactivated by setting <code>incl_rownums</code>
+to <code>FALSE</code>.
+</p>
+
+
+<h3>Value</h3>
+
+<p>an object of class <code>gt_tbl</code>.
+</p>
+
+
+<h3>Figures</h3>
+
+<p><img src="../help/figures/man_gt_preview_1.svg" width=100% />
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other table-part creation/modification functions: <code><a href="gt.html">gt</a></code>,
+<code><a href="tab_footnote.html">tab_footnote</a></code>, <code><a href="tab_header.html">tab_header</a></code>,
+<code><a href="tab_options.html">tab_options</a></code>, <code><a href="tab_row_group.html">tab_row_group</a></code>,
+<code><a href="tab_source_note.html">tab_source_note</a></code>, <code><a href="tab_spanner.html">tab_spanner</a></code>,
+<code><a href="tab_stubhead_label.html">tab_stubhead_label</a></code>, <code><a href="tab_style.html">tab_style</a></code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+# Use `gtcars` to create a gt table
+# preview (with only a few of its
+# columns); you'll see the first five
+# rows and the last row
+tab_1 &lt;-
+  gtcars %&gt;%
+  dplyr::select(mfr, model, year) %&gt;%
+  gt_preview()
+
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>gt</em> version 0.1.0 <a href="00Index.html">Index</a>]</div>
+</body></html>

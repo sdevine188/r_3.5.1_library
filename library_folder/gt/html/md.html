@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Interpret input text as Markdown-formatted text</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for md {gt}"><tr><td>md {gt}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Interpret input text as Markdown-formatted text</h2>
+
+<h3>Description</h3>
+
+<p>Interpret input text as Markdown-formatted text
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+md(text)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>text</code></td>
+<td>
+<p>the text that is understood to contain Markdown formatting.</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>a character object that is tagged for a Markdown-to-HTML
+transformation.
+</p>
+<p>a character object of class <code>from_markdown</code>.
+</p>
+
+
+<h3>Figures</h3>
+
+<p><img src="../help/figures/man_md_1.svg" width=100% />
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other helper functions: <code><a href="cells_styles.html">cells_styles</a></code>,
+<code><a href="escape_latex.html">escape_latex</a></code>,
+<code><a href="gt_latex_dependencies.html">gt_latex_dependencies</a></code>, <code><a href="html.html">html</a></code>,
+<code><a href="pct.html">pct</a></code>, <code><a href="px.html">px</a></code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+# Use `exibble` to create a gt table;
+# when adding a title, use the `md()`
+# helper to use Markdown formatting
+tab_1 &lt;-
+  exibble %&gt;%
+  dplyr::select(currency, char) %&gt;%
+  gt() %&gt;%
+  tab_header(
+    title = md("Using *Markdown*"))
+
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>gt</em> version 0.1.0 <a href="00Index.html">Index</a>]</div>
+</body></html>

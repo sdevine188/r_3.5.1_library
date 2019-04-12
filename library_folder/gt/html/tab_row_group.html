@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Add a row group</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for tab_row_group {gt}"><tr><td>tab_row_group {gt}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Add a row group</h2>
+
+<h3>Description</h3>
+
+<p>Create a row group with a collection of rows. This requires specification of
+the rows to be included, either by supplying row labels, row indices, or
+through use of a select helper function like <code>starts_with()</code>.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+tab_row_group(data, group = NULL, rows = NULL, others = NULL)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>data</code></td>
+<td>
+<p>a table object that is created using the <code><a href="gt.html">gt</a>()</code>
+function.</p>
+</td></tr>
+<tr valign="top"><td><code>group</code></td>
+<td>
+<p>the name of the row group. This text will also serve as the row
+group label.</p>
+</td></tr>
+<tr valign="top"><td><code>rows</code></td>
+<td>
+<p>the rows to be made components of the row group. Can either be a
+vector of row captions provided <code>c()</code>, a vector of row indices, or a
+helper function focused on selections. The select helper functions are:
+<code><a href="reexports.html">starts_with</a>()</code>, <code><a href="reexports.html">ends_with</a>()</code>,
+<code><a href="reexports.html">contains</a>()</code>, <code><a href="reexports.html">matches</a>()</code>, <code><a href="reexports.html">one_of</a>()</code>,
+and <code><a href="reexports.html">everything</a>()</code>.</p>
+</td></tr>
+<tr valign="top"><td><code>others</code></td>
+<td>
+<p>an option to set a default row group label for any rows not
+formally placed in a row group named by <code>group</code> in any call of
+<code>tab_row_group()</code>. A separate call to <code>tab_row_group()</code> with only
+a value to <code>others</code> is possible and makes explicit that the call is
+meant to provide a default row group label. If this is not set and
+there are rows that haven't been placed into a row group (where one or
+more row groups already exist), those rows will be automatically placed into
+a row group without a label.</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>an object of class <code>gt_tbl</code>.
+</p>
+
+
+<h3>Figures</h3>
+
+<p><img src="../help/figures/man_tab_row_group_1.svg" width=100% />
+</p>
+<p><img src="../help/figures/man_tab_row_group_2.svg" width=100% />
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other table-part creation/modification functions: <code><a href="gt_preview.html">gt_preview</a></code>,
+<code><a href="gt.html">gt</a></code>, <code><a href="tab_footnote.html">tab_footnote</a></code>,
+<code><a href="tab_header.html">tab_header</a></code>, <code><a href="tab_options.html">tab_options</a></code>,
+<code><a href="tab_source_note.html">tab_source_note</a></code>, <code><a href="tab_spanner.html">tab_spanner</a></code>,
+<code><a href="tab_stubhead_label.html">tab_stubhead_label</a></code>, <code><a href="tab_style.html">tab_style</a></code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+# Use `gtcars` to create a gt table and
+# add two row groups with the labels:
+# `numbered` and `NA` (a group without
+# a title, or, the rest)
+tab_1 &lt;-
+  gtcars %&gt;%
+  dplyr::select(model, year, hp, trq) %&gt;%
+  dplyr::slice(1:8) %&gt;%
+  gt(rowname_col = "model") %&gt;%
+  tab_row_group(
+    group = "numbered",
+    rows = matches("^[0-9]")
+  )
+
+# Use `gtcars` to create a gt table;
+# add two row groups with the labels
+# `powerful` and `super powerful`: the
+# distinction being `hp` lesser or
+# greater than `600`
+tab_2 &lt;-
+  gtcars %&gt;%
+  dplyr::select(model, year, hp, trq) %&gt;%
+  dplyr::slice(1:8) %&gt;%
+  gt(rowname_col = "model") %&gt;%
+  tab_row_group(
+    group = "powerful",
+    rows = hp &lt;= 600
+  ) %&gt;%
+  tab_row_group(
+    group = "super powerful",
+    rows = hp &gt; 600
+  )
+
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>gt</em> version 0.1.0 <a href="00Index.html">Index</a>]</div>
+</body></html>

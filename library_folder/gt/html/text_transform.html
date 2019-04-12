@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Perform targeted text transformation with a function</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for text_transform {gt}"><tr><td>text_transform {gt}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Perform targeted text transformation with a function</h2>
+
+<h3>Description</h3>
+
+<p>Perform targeted text transformation with a function
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+text_transform(data, locations, fn)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>data</code></td>
+<td>
+<p>a table object that is created using the <code><a href="gt.html">gt</a>()</code>
+function.</p>
+</td></tr>
+<tr valign="top"><td><code>locations</code></td>
+<td>
+<p>the cell or set of cells to be associated with the text
+transformation. Supplying any of the <code>cells_*()</code> helper functions is a
+useful way to target the location cells that are associated with the
+footnote text. These helper functions are: <code><a href="location_cells.html">cells_title</a>()</code>,
+<code><a href="location_cells.html">cells_column_labels</a>()</code>, <code><a href="location_cells.html">cells_group</a>()</code>,
+<code><a href="location_cells.html">cells_stub</a>()</code>, <code><a href="location_cells.html">cells_data</a>()</code>, and
+<code><a href="location_cells.html">cells_summary</a>()</code>. Please see the help article
+<a href="location_cells.html">location_cells</a> for more information on how these helper functions
+can be used. Additionally, we can enclose several <code>cells_*()</code> calls
+within a <code>list()</code> if we wish to link the footnote text to different
+types of locations (e.g., cell data values, stub group headings, the table
+title, etc.).</p>
+</td></tr>
+<tr valign="top"><td><code>fn</code></td>
+<td>
+<p>the function to use for text transformation.</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>an object of class <code>gt_tbl</code>.
+</p>
+
+
+<h3>Figures</h3>
+
+<p><img src="../help/figures/man_text_transform_1.svg" width=100% />
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other data formatting functions: <code><a href="data_color.html">data_color</a></code>,
+<code><a href="fmt_currency.html">fmt_currency</a></code>, <code><a href="fmt_datetime.html">fmt_datetime</a></code>,
+<code><a href="fmt_date.html">fmt_date</a></code>, <code><a href="fmt_missing.html">fmt_missing</a></code>,
+<code><a href="fmt_number.html">fmt_number</a></code>, <code><a href="fmt_passthrough.html">fmt_passthrough</a></code>,
+<code><a href="fmt_percent.html">fmt_percent</a></code>, <code><a href="fmt_scientific.html">fmt_scientific</a></code>,
+<code><a href="fmt_time.html">fmt_time</a></code>, <code><a href="fmt.html">fmt</a></code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+# Use `exibble` to create a gt table;
+# transform the formatted text in the
+# `num` and `currency` columns using
+# a function within `text_transform()`,
+# where `x` is a formatted vector of
+# column values
+tab_1 &lt;-
+  exibble %&gt;%
+  dplyr::select(num, char, currency) %&gt;%
+  dplyr::slice(1:4) %&gt;%
+  gt() %&gt;%
+  fmt_number(columns = vars(num)) %&gt;%
+  fmt_currency(columns = vars(currency)) %&gt;%
+  text_transform(
+    locations = cells_data(
+      columns = vars(num)),
+    fn = function(x) {
+
+      paste0(
+        x, " (",
+        dplyr::case_when(
+          x &gt; 20   ~ "large",
+          x &lt;= 20  ~ "small"),
+        ")")
+    }
+  ) %&gt;%
+  text_transform(
+    locations = cells_data(
+      columns = vars(currency)),
+    fn = function(x) {
+
+      ifelse(
+        grepl(",", x),
+        gsub("\\.\\d\\d", "", x),
+        x)
+    }
+  )
+
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>gt</em> version 0.1.0 <a href="00Index.html">Index</a>]</div>
+</body></html>

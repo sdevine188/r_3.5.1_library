@@ -1,0 +1,274 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Modify the table output options</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for tab_options {gt}"><tr><td>tab_options {gt}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Modify the table output options</h2>
+
+<h3>Description</h3>
+
+<p>Modify the options available in a table. These options are named by the
+components, the subcomponents, and the element that can adjusted.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+tab_options(data, table.width = NULL, table.font.size = NULL,
+  table.background.color = NULL, table.border.top.style = NULL,
+  table.border.top.width = NULL, table.border.top.color = NULL,
+  heading.background.color = NULL, heading.title.font.size = NULL,
+  heading.subtitle.font.size = NULL,
+  heading.border.bottom.style = NULL,
+  heading.border.bottom.width = NULL,
+  heading.border.bottom.color = NULL,
+  column_labels.background.color = NULL,
+  column_labels.font.size = NULL, column_labels.font.weight = NULL,
+  stub_group.background.color = NULL, stub_group.font.size = NULL,
+  stub_group.font.weight = NULL, stub_group.border.top.style = NULL,
+  stub_group.border.top.width = NULL,
+  stub_group.border.top.color = NULL,
+  stub_group.border.bottom.style = NULL,
+  stub_group.border.bottom.width = NULL,
+  stub_group.border.bottom.color = NULL, field.border.top.style = NULL,
+  field.border.top.width = NULL, field.border.top.color = NULL,
+  field.border.bottom.style = NULL, field.border.bottom.width = NULL,
+  field.border.bottom.color = NULL, row.padding = NULL,
+  summary_row.background.color = NULL, summary_row.padding = NULL,
+  summary_row.text_transform = NULL, footnote.sep = NULL,
+  footnote.glyph = NULL, footnote.font.size = NULL,
+  footnote.padding = NULL, sourcenote.font.size = NULL,
+  sourcenote.padding = NULL, row.striping.include_stub = NULL,
+  row.striping.include_field = NULL)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>data</code></td>
+<td>
+<p>a table object that is created using the <code><a href="gt.html">gt</a>()</code>
+function.</p>
+</td></tr>
+<tr valign="top"><td><code>table.width</code></td>
+<td>
+<p>the width of the table. Can be specified as a
+single-length character with units of pixels or as a percentage. If
+provided as a single-length numeric vector, it is assumed that the value is
+given in units of pixels. The <code><a href="px.html">px</a>()</code> and <code><a href="pct.html">pct</a>()</code>
+helper functions can also be used to pass in numeric values and obtain
+values as pixel or percent units.</p>
+</td></tr>
+<tr valign="top"><td><code>table.font.size, heading.title.font.size, heading.subtitle.font.size, column_labels.font.size, stub_group.font.size, footnote.font.size, sourcenote.font.size</code></td>
+<td>
+<p>font sizes for the parent text element <code>table</code> and the following child
+elements: <code>heading.title</code>, <code>heading.subtitle</code>, <code>columns</code>,
+<code>stub_group</code>, <code>footnote</code>, and <code>sourcenote</code>. Can be specified
+as a single-length character vector with units of pixels
+(e.g., <code>12px</code>) or as a percentage (e.g., <code>80%</code>). If provided as a
+single-length numeric vector, it is assumed that the value is given in
+units of pixels. The <code><a href="px.html">px</a>()</code> and <code><a href="pct.html">pct</a>()</code> helper
+functions can also be used to pass in numeric values and obtain values as
+pixel or percent units.</p>
+</td></tr>
+<tr valign="top"><td><code>table.background.color, heading.background.color, column_labels.background.color, stub_group.background.color, summary_row.background.color</code></td>
+<td>
+<p>background colors for the parent element <code>table</code> and the following
+child elements: <code>heading</code>, <code>columns</code>, <code>stub_group</code>,
+<code>summary_row</code>, and <code>field</code>. A color name or a hexadecimal color
+code should be provided.</p>
+</td></tr>
+<tr valign="top"><td><code>table.border.top.style, table.border.top.width, table.border.top.color</code></td>
+<td>
+<p>the style, width, and color of the table's top border.</p>
+</td></tr>
+<tr valign="top"><td><code>heading.border.bottom.style, heading.border.bottom.width, heading.border.bottom.color</code></td>
+<td>
+<p>the style, width, and color of the heading's bottom border.</p>
+</td></tr>
+<tr valign="top"><td><code>column_labels.font.weight, stub_group.font.weight</code></td>
+<td>
+<p>the font weight of the
+<code>columns</code> and <code>stub_group</code> text element.</p>
+</td></tr>
+<tr valign="top"><td><code>stub_group.border.top.style, stub_group.border.top.width, stub_group.border.top.color</code></td>
+<td>
+<p>the style, width, and color of the stub heading's top border.</p>
+</td></tr>
+<tr valign="top"><td><code>stub_group.border.bottom.style, stub_group.border.bottom.width, stub_group.border.bottom.color</code></td>
+<td>
+<p>the style, width, and color of the stub heading's bottom border.</p>
+</td></tr>
+<tr valign="top"><td><code>field.border.top.style, field.border.top.width, field.border.top.color</code></td>
+<td>
+<p>the style, width, and color of the field's top border.</p>
+</td></tr>
+<tr valign="top"><td><code>field.border.bottom.style, field.border.bottom.width, field.border.bottom.color</code></td>
+<td>
+<p>the style, width, and color of the field's bottom border.</p>
+</td></tr>
+<tr valign="top"><td><code>row.padding, summary_row.padding</code></td>
+<td>
+<p>the amount of padding in each row and
+in each summary row.</p>
+</td></tr>
+<tr valign="top"><td><code>summary_row.text_transform</code></td>
+<td>
+<p>an option to apply text transformations to
+the label text in each summary row.</p>
+</td></tr>
+<tr valign="top"><td><code>footnote.sep</code></td>
+<td>
+<p>the separating characters between adjacent footnotes in
+the footnotes section. The default value produces a linebreak.</p>
+</td></tr>
+<tr valign="top"><td><code>footnote.glyph</code></td>
+<td>
+<p>the set of sequential figures or characters used to
+identify the footnotes. We can either supply the keyword <code>"numbers"</code>
+(the default, indicating that we want numeric glyphs), the keywords
+<code>"letters"</code> or <code>"LETTERS"</code> (indicating that we want letters as
+glyphs, either lowercase or uppercase), or, a vector of character values
+representing the series of glyphs. A series of glyphs is recycled when its
+usage goes beyond the length of the set. At each cycle, the glyphs are
+simply combined (e.g., <code>*</code> -&gt; <code>**</code> -&gt; <code>***</code>).</p>
+</td></tr>
+<tr valign="top"><td><code>footnote.padding, sourcenote.padding</code></td>
+<td>
+<p>the amount of padding to apply to
+the footnote and source note sections.</p>
+</td></tr>
+<tr valign="top"><td><code>row.striping.include_stub</code></td>
+<td>
+<p>an option for whether to include the stub
+when striping rows.</p>
+</td></tr>
+<tr valign="top"><td><code>row.striping.include_field</code></td>
+<td>
+<p>an option for whether to include the field
+when striping rows.</p>
+</td></tr>
+</table>
+
+
+<h3>Value</h3>
+
+<p>an object of class <code>gt_tbl</code>.
+</p>
+
+
+<h3>Figures</h3>
+
+<p><img src="../help/figures/man_tab_options_1.svg" width=100% />
+</p>
+<p><img src="../help/figures/man_tab_options_2.svg" width=100% />
+</p>
+<p><img src="../help/figures/man_tab_options_3.svg" width=100% />
+</p>
+<p><img src="../help/figures/man_tab_options_4.svg" width=100% />
+</p>
+<p><img src="../help/figures/man_tab_options_5.svg" width=100% />
+</p>
+<p><img src="../help/figures/man_tab_options_6.svg" width=100% />
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other table-part creation/modification functions: <code><a href="gt_preview.html">gt_preview</a></code>,
+<code><a href="gt.html">gt</a></code>, <code><a href="tab_footnote.html">tab_footnote</a></code>,
+<code><a href="tab_header.html">tab_header</a></code>, <code><a href="tab_row_group.html">tab_row_group</a></code>,
+<code><a href="tab_source_note.html">tab_source_note</a></code>, <code><a href="tab_spanner.html">tab_spanner</a></code>,
+<code><a href="tab_stubhead_label.html">tab_stubhead_label</a></code>, <code><a href="tab_style.html">tab_style</a></code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+# Use `exibble` to create a gt table with
+# all the main parts added; we can use this
+# going forward to demo some `tab_options()`
+tab_1 &lt;-
+  exibble %&gt;%
+  dplyr::select(
+    -c(fctr, date, time, datetime)
+  ) %&gt;%
+  gt(
+    rowname_col = "row",
+    groupname_col = "group"
+  ) %&gt;%
+  tab_header(
+    title = md("Data listing from **exibble**"),
+    subtitle = md("`exibble` is an R dataset")
+  ) %&gt;%
+  fmt_number(columns = vars(num)) %&gt;%
+  fmt_currency(columns = vars(currency)) %&gt;%
+  tab_footnote(
+    footnote = "Using commas for separators.",
+    locations = cells_data(
+      columns = vars(num),
+      rows = num &gt; 1000)
+  ) %&gt;%
+  tab_footnote(
+    footnote = "Using commas for separators.",
+    locations = cells_data(
+      columns = vars(currency),
+      rows = currency &gt; 1000)
+  ) %&gt;%
+  tab_footnote(
+    footnote = "Alphabetical fruit.",
+    locations = cells_column_labels(
+      columns = vars(char))
+  )
+
+# Modify the table width to 100% (which
+# spans the entire content width area)
+tab_2 &lt;-
+  tab_1 %&gt;%
+  tab_options(
+    table.width = pct(100)
+  )
+
+# Modify the table's background color
+# to be "lightcyan"
+tab_3 &lt;-
+  tab_1 %&gt;%
+  tab_options(
+    table.background.color = "lightcyan"
+  )
+
+# Use letters as the glyphs for footnote
+# references; also, separate footnotes in
+# the footer by spaces instead of newlines
+tab_4 &lt;-
+  tab_1 %&gt;%
+  tab_options(
+    footnote.sep = " ",
+    footnote.glyph = letters
+  )
+
+# Change the padding of data rows to 5px
+tab_5 &lt;-
+  tab_1 %&gt;%
+  tab_options(
+    row.padding = px(5)
+  )
+
+# Reduce the size of the title and the
+# subtitle text
+tab_6 &lt;-
+  tab_1 %&gt;%
+  tab_options(
+    heading.title.font.size = "small",
+    heading.subtitle.font.size = "small"
+  )
+
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>gt</em> version 0.1.0 <a href="00Index.html">Index</a>]</div>
+</body></html>

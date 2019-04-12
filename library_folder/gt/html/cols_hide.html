@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Hide one or more columns</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for cols_hide {gt}"><tr><td>cols_hide {gt}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Hide one or more columns</h2>
+
+<h3>Description</h3>
+
+<p>The <code>cols_hide()</code> function allows us to hide one or more columns from
+appearing in the final output table. While it's possible and often desirable
+to omit columns from the input table data before introduction to the
+<code><a href="gt.html">gt</a>()</code> function, there can be cases where the data in certain
+columns is useful (as a column reference during formatting of other columns)
+but the final display of those columns is not necessary.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+cols_hide(data, columns)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>data</code></td>
+<td>
+<p>a table object that is created using the <code><a href="gt.html">gt</a>()</code>
+function.</p>
+</td></tr>
+<tr valign="top"><td><code>columns</code></td>
+<td>
+<p>the column names to hide from the output display table. The
+order of the remaining columns will be preserved. Values provided that do
+not correspond to column names will be disregarded.</p>
+</td></tr>
+</table>
+
+
+<h3>Details</h3>
+
+<p>The hiding of columns is internally a rendering directive, so, all columns
+that are 'hidden' are still accessible and useful in any expression provided
+to a <code>rows</code> argument. Furthermore, the <code>cols_hide()</code> function (as
+with many <span class="pkg">gt</span> functions) can be placed anywhere in a pipeline of
+<span class="pkg">gt</span> function calls (acting as a promise to hide columns when the timing
+is right). However there's perhaps greater readability when placing this call
+closer to the end of such a pipeline.
+</p>
+
+
+<h3>Value</h3>
+
+<p>an object of class <code>gt_tbl</code>.
+</p>
+
+
+<h3>Figures</h3>
+
+<p><img src="../help/figures/man_cols_hide_1.svg" width=100% />
+</p>
+<p><img src="../help/figures/man_cols_hide_2.svg" width=100% />
+</p>
+
+
+<h3>See Also</h3>
+
+<p>Other column modification functions: <code><a href="cols_align.html">cols_align</a></code>,
+<code><a href="cols_label.html">cols_label</a></code>, <code><a href="cols_merge_range.html">cols_merge_range</a></code>,
+<code><a href="cols_merge_uncert.html">cols_merge_uncert</a></code>,
+<code><a href="cols_merge.html">cols_merge</a></code>, <code><a href="cols_move_to_end.html">cols_move_to_end</a></code>,
+<code><a href="cols_move_to_start.html">cols_move_to_start</a></code>,
+<code><a href="cols_move.html">cols_move</a></code>, <code><a href="cols_split_delim.html">cols_split_delim</a></code>
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+# Use `countrypops` to create a gt table;
+# Hide the columns `country_code_2` and
+# `country_code_3`
+tab_1 &lt;-
+  countrypops %&gt;%
+  dplyr::filter(country_name == "Mongolia") %&gt;%
+  tail(5) %&gt;%
+  gt() %&gt;%
+  cols_hide(
+    columns = vars(
+      country_code_2, country_code_3)
+  )
+
+# Use `countrypops` to create a gt table;
+# Use the `population` column to provide
+# the conditional placement of footnotes,
+# then hide that column and one other
+tab_2 &lt;-
+  countrypops %&gt;%
+  dplyr::filter(country_name == "Mongolia") %&gt;%
+  tail(5) %&gt;%
+  gt() %&gt;%
+  cols_hide(
+    columns = vars(country_code_3, population)
+  ) %&gt;%
+  tab_footnote(
+    footnote = "Population above 3,000,000.",
+    locations = cells_data(
+      columns = vars(year),
+      rows = population &gt; 3000000)
+  )
+
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>gt</em> version 0.1.0 <a href="00Index.html">Index</a>]</div>
+</body></html>

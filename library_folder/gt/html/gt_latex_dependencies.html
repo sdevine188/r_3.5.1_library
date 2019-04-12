@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Get the LaTeX dependencies required for a gt table</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for gt_latex_dependencies {gt}"><tr><td>gt_latex_dependencies {gt}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Get the LaTeX dependencies required for a gt table</h2>
+
+<h3>Description</h3>
+
+<p>When working with Rnw (Sweave) files or otherwise writing LaTeX code,
+including a <span class="pkg">gt</span> table can be problematic if we don't have knowledge
+of the LaTeX dependencies. For the most part, these dependencies are the
+LaTeX packages that are required for rendering a <span class="pkg">gt</span> table. The
+<code>gt_latex_dependencies()</code> function provides an object that can be
+used to provide the LaTeX in an Rnw file, allowing <span class="pkg">gt</span> tables to work
+and not yield errors due to missing packages.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+gt_latex_dependencies()
+</pre>
+
+
+<h3>Details</h3>
+
+<p>Here is an example Rnw document that shows how the
+<code>gt_latex_dependencies()</code> can be used in conjunction with a <span class="pkg">gt</span>
+table:
+</p>
+<pre>
+%!sweave=knitr
+
+\documentclass{article}
+
+&lt;&lt;echo=FALSE&gt;&gt;=
+library(gt)
+ @
+
+&lt;&lt;results='asis', echo=FALSE&gt;&gt;=
+gt_latex_dependencies()
+ @
+
+\begin{document}
+
+&lt;&lt;results='asis', echo=FALSE&gt;&gt;=
+exibble 
+ @
+
+\end{document}
+</pre>
+
+
+<h3>See Also</h3>
+
+<p>Other helper functions: <code><a href="cells_styles.html">cells_styles</a></code>,
+<code><a href="escape_latex.html">escape_latex</a></code>, <code><a href="html.html">html</a></code>,
+<code><a href="md.html">md</a></code>, <code><a href="pct.html">pct</a></code>, <code><a href="px.html">px</a></code>
+</p>
+
+<hr /><div style="text-align: center;">[Package <em>gt</em> version 0.1.0 <a href="00Index.html">Index</a>]</div>
+</body></html>

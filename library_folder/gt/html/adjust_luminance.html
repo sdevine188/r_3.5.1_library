@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>R: Adjust the luminance for a palette of colors</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="R.css" />
+</head><body>
+
+<table width="100%" summary="page for adjust_luminance {gt}"><tr><td>adjust_luminance {gt}</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2>Adjust the luminance for a palette of colors</h2>
+
+<h3>Description</h3>
+
+<p>This function can brighten or darken a palette of colors by an arbitrary
+number of steps, which is defined by a real number between -2.0 and 2.0. The
+transformation of a palette by a fixed step in this function will tend to
+apply greater darkening or lightening for those colors in the midrange
+compared to any very dark or very light colors in the input palette.
+</p>
+
+
+<h3>Usage</h3>
+
+<pre>
+adjust_luminance(colors, steps)
+</pre>
+
+
+<h3>Arguments</h3>
+
+<table summary="R argblock">
+<tr valign="top"><td><code>colors</code></td>
+<td>
+<p>a vector of colors that will undergo an adjustment in
+luminance. Each color value provided must either be a color name (in the
+set of colors provided by <code>grDevices::colors()</code>) or a hexadecimal
+string in the form of &quot;#RRGGBB&quot; or &quot;#RRGGBBAA&quot;.</p>
+</td></tr>
+<tr valign="top"><td><code>steps</code></td>
+<td>
+<p>a positive or negative factor by which the luminance will be
+adjusted. Must be a number between <code>-2.0</code> and <code>2.0</code>.</p>
+</td></tr>
+</table>
+
+
+<h3>Details</h3>
+
+<p>This function can be useful when combined with the <code><a href="data_color.html">data_color</a>()</code>
+function's <code>palette</code> argument, which can use a vector of colors or any
+of the <code>col_*</code> functions from the <span class="pkg">scales</span> package (all of which
+have a <code>palette</code> argument).
+</p>
+
+
+<h3>Figures</h3>
+
+<p><img src="../help/figures/man_adjust_luminance_1.svg" width=100% />
+</p>
+
+
+<h3>Examples</h3>
+
+<pre>
+# Get a palette of 8 pastel colors from
+# the RColorBrewer package
+pal &lt;- RColorBrewer::brewer.pal(8, "Pastel2")
+
+# Create lighter and darker variants
+# of the base palette (one step lower, one
+# step higher)
+pal_darker  &lt;- pal %&gt;% adjust_luminance(-1.0)
+pal_lighter &lt;- pal %&gt;% adjust_luminance(+1.0)
+
+# Create a tibble and make a gt table
+# from it; color each column in order of
+# increasingly darker palettes (with
+# `data_color()`)
+tab_1 &lt;-
+  dplyr::tibble(a = 1:8, b = 1:8, c = 1:8) %&gt;%
+  gt() %&gt;%
+  data_color(
+    columns = vars(a),
+    colors = scales::col_numeric(
+      palette = pal_lighter,
+      domain = c(1, 8)
+    )
+  ) %&gt;%
+  data_color(
+    columns = vars(b),
+    colors = scales::col_numeric(
+      palette = pal,
+      domain = c(1, 8)
+    )
+  ) %&gt;%
+  data_color(
+    columns = vars(c),
+    colors = scales::col_numeric(
+      palette = pal_darker,
+      domain = c(1, 8)
+    )
+  )
+
+</pre>
+
+<hr /><div style="text-align: center;">[Package <em>gt</em> version 0.1.0 <a href="00Index.html">Index</a>]</div>
+</body></html>
